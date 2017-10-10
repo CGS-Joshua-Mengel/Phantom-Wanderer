@@ -10,729 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    //
-    //      D E A D   E N D S
-    //
-    
-    // North Dead End
-    
-    let northDeadEnd = [
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northDeadEndRoof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // North Dead End Room
-    
-    let northDeadEndRoom = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northDeadEndRoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // East Dead End
-    
-    let eastDeadEnd = [
-        [3,3,3,3,3,3,3],
-        [3,3,2,2,2,2,2],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let eastDeadEndRoof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // East Dead End Room
-    
-    let eastDeadEndRoom = [
-        [3,2,2,2,2,2,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,2],
-        [3,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let eastDeadEndRoomRoof = [
-        [1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // South Dead End
-    
-    let southDeadEnd = [
-        [3,3,3,3,3,3,3],
-        [3,3,2,2,2,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let southDeadEndRoof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // South Dead End Room
-    
-    let southDeadEndRoom = [
-        [3,2,2,2,2,2,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let southDeadEndRoomRoof = [
-        [1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    // West Dead End
-    
-    let westDeadEnd = [
-        [3,3,3,3,3,3,3],
-        [2,2,2,2,2,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let westDeadEndRoof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // West Dead End Room
-    
-    let westDeadEndRoom = [
-        [3,2,2,2,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,3],
-        [0,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let westDeadEndRoomRoof = [
-        [1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    //
-    //
-    //
-    
-    //
-    //      S T R A I G H T S
-    //
-    
-    //Horizontal Straight
-    
-    let horizontalStraight = [
-        [3,3,3,3,3,3,3],
-        [2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let horizontalStraightRoof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    //Horizontal Straight Room
-    
-    let horizontalStraightRoom = [
-        [3,2,2,2,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,2],
-        [0,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let horizontalStraightRoomRoof = [
-        [1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // Vertical Straight
-    
-    let verticalStraight = [
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let verticalStraightRoof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // Vertical Straight Room
-    
-    let verticalStraightRoom = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let verticalStraightRoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    //
-    //
-    //
-    
-    //
-    //      9 0   D E G R E E S
-    //
-    
-    // North West 90
-    
-    let northWest90 = [
-        [3,3,0,0,0,3,3],
-        [2,2,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northWest90Roof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // North West 90 Room
-    
-    let northWest90Room = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,3],
-        [0,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northWest90RoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    //North East 90
-    
-    let northEast90 = [
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,2,2],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northEast90Roof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    //North East 90 Room
-    
-    let northEast90Room = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,2],
-        [3,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northEast90RoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // South East 90
-    
-    let southEast90 = [
-        [3,3,3,3,3,3,3],
-        [3,3,2,2,2,2,2],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let southEast90Roof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // South East 90 Room
-    
-    let southEast90Room = [
-        [3,2,2,2,2,2,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,2],
-        [3,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let southEast90RoomRoof = [
-        [1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    // South West 90
-    
-    let southWest90 = [
-        [3,3,3,3,3,3,3],
-        [2,2,2,2,2,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let southWest90Roof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // South West 90 Room
-    
-    let southWest90Room = [
-        [3,2,2,2,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,3],
-        [0,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let southWest90RoomRoof = [
-        [1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    //
-    //
-    //
-    
-    //
-    //      T   J U N C T I O N S
-    //
-    
-    // North T Junction
-    
-    let northTJunction = [
-        [3,3,0,0,0,3,3],
-        [2,2,0,0,0,2,2],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northTJunctionRoof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // North T Junction Room
-    
-    let northTJunctionRoom = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,2],
-        [0,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let northTJunctionRoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    // East T Junction
-    
-    let eastTJunction = [
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,2,2],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,0,0],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let eastTJunctionRoof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,0,0],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // East T Junction Room
-    
-    let eastTJunctionRoom = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,2],
-        [3,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let eastTJunctionRoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    // South T Junction
-    
-    let southTJunction = [
-        [3,3,3,3,3,3,3],
-        [2,2,2,2,2,2,2],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let southTJunctionRoof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // South T Junction Room
-    
-    let southTJunctionRoom = [
-        [3,2,2,2,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,2],
-        [0,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let southTJunctionRoomRoof = [
-        [1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    // West T Junction
-    
-    let westTJunction = [
-        [3,3,0,0,0,3,3],
-        [2,2,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [0,0,0,0,0,3,3],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let westTJunctionRoof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [0,0,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // West T Junction Room
-    
-    let westTJunctionRoom = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,3],
-        [0,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let westTJunctionRoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    //
-    //
-    //
-    
-    //
-    //      X   J U N C T I O N S
-    //
-    
-    // X Junction
-    
-    let xJunction = [
-        [3,3,0,0,0,3,3],
-        [2,2,0,0,0,2,2],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [3,3,0,0,0,3,3],
-        [3,3,0,0,0,3,3]
-    ]
-    
-    let xJunctionRoof = [
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [1,1,0,0,0,1,1],
-        [1,1,0,0,0,1,1]
-    ]
-    
-    // X Junction Room
-    
-    let xJunctionRoom = [
-        [3,2,2,0,2,2,3],
-        [3,0,0,0,0,0,3],
-        [2,0,0,0,0,0,2],
-        [0,0,0,0,0,0,0],
-        [3,0,0,0,0,0,3],
-        [3,0,0,0,0,0,3],
-        [3,3,2,0,2,3,3]
-    ]
-    
-    let xJunctionRoomRoof = [
-        [1,1,1,0,1,1,1],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [0,0,0,0,0,0,0],
-        [1,0,0,0,0,0,1],
-        [1,0,0,0,0,0,1],
-        [1,1,1,0,1,1,1]
-    ]
-    
-    let void = [
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3],
-        [3,3,3,3,3,3,3]
-    ]
-    
-    let voidRoof = [
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1]
-    ]
-    
-    //
-    //
-    //
-    
-    //
-    //      D U N G E O N   L A Y O U T   G E N E R A T I O N
-    //
+    var northDeadEnd = allRooms.northDeadEnd
     
     var upList = [1,5,7,8,11,12,13,15]
     var downList = [3,5,9,10,12,13,14,15]
@@ -865,14 +143,8 @@ class GameScene: SKScene {
     }
     
     //
-    //
-    //
-    
-    //
     //      M E C H A N I C S
     //
-    
-    
     
     //All variables
     
@@ -1069,11 +341,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = northDeadEnd
-                        roomToPlaceRoof = northDeadEndRoof
+                        roomToPlace = allRooms.northDeadEnd
+                        roomToPlaceRoof = allRooms.northDeadEndRoof
                     default:
-                        roomToPlace = northDeadEndRoom
-                        roomToPlaceRoof = northDeadEndRoomRoof
+                        roomToPlace = allRooms.northDeadEndRoom
+                        roomToPlaceRoof = allRooms.northDeadEndRoomRoof
                         
                     }
                     
@@ -1084,11 +356,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = westDeadEnd
-                        roomToPlaceRoof = westDeadEndRoof
+                        roomToPlace = allRooms.westDeadEnd
+                        roomToPlaceRoof = allRooms.westDeadEndRoof
                     default:
-                        roomToPlace = westDeadEndRoom
-                        roomToPlaceRoof = westDeadEndRoomRoof
+                        roomToPlace = allRooms.westDeadEndRoom
+                        roomToPlaceRoof = allRooms.westDeadEndRoomRoof
                         
                     }
                     
@@ -1099,11 +371,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = southDeadEnd
-                        roomToPlaceRoof = southDeadEndRoof
+                        roomToPlace = allRooms.southDeadEnd
+                        roomToPlaceRoof = allRooms.southDeadEndRoof
                     default:
-                        roomToPlace = southDeadEndRoom
-                        roomToPlaceRoof = southDeadEndRoomRoof
+                        roomToPlace = allRooms.southDeadEndRoom
+                        roomToPlaceRoof = allRooms.southDeadEndRoomRoof
                         
                     }
                     
@@ -1114,11 +386,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = eastDeadEnd
-                        roomToPlaceRoof = eastDeadEndRoof
+                        roomToPlace = allRooms.eastDeadEnd
+                        roomToPlaceRoof = allRooms.eastDeadEndRoof
                     default:
-                        roomToPlace = eastDeadEndRoom
-                        roomToPlaceRoof = eastDeadEndRoomRoof
+                        roomToPlace = allRooms.eastDeadEndRoom
+                        roomToPlaceRoof = allRooms.eastDeadEndRoomRoof
                         
                     }
                     
@@ -1129,11 +401,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = verticalStraight
-                        roomToPlaceRoof = verticalStraightRoof
+                        roomToPlace = allRooms.verticalStraight
+                        roomToPlaceRoof = allRooms.verticalStraightRoof
                     default:
-                        roomToPlace = verticalStraightRoom
-                        roomToPlaceRoof = verticalStraightRoomRoof
+                        roomToPlace = allRooms.verticalStraightRoom
+                        roomToPlaceRoof = allRooms.verticalStraightRoomRoof
                         
                     }
                     
@@ -1144,11 +416,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = horizontalStraight
-                        roomToPlaceRoof = horizontalStraightRoof
+                        roomToPlace = allRooms.horizontalStraight
+                        roomToPlaceRoof = allRooms.horizontalStraightRoof
                     default:
-                        roomToPlace = horizontalStraightRoom
-                        roomToPlaceRoof = horizontalStraightRoomRoof
+                        roomToPlace = allRooms.horizontalStraightRoom
+                        roomToPlaceRoof = allRooms.horizontalStraightRoomRoof
                         
                     }
                     
@@ -1159,11 +431,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = northEast90
-                        roomToPlaceRoof = northEast90Roof
+                        roomToPlace = allRooms.northEast90
+                        roomToPlaceRoof = allRooms.northEast90Roof
                     default:
-                        roomToPlace = northEast90Room
-                        roomToPlaceRoof = northEast90RoomRoof
+                        roomToPlace = allRooms.northEast90Room
+                        roomToPlaceRoof = allRooms.northEast90RoomRoof
                         
                     }
                     
@@ -1174,11 +446,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = northWest90
-                        roomToPlaceRoof = northWest90Roof
+                        roomToPlace = allRooms.northWest90
+                        roomToPlaceRoof = allRooms.northWest90Roof
                     default:
-                        roomToPlace = northWest90Room
-                        roomToPlaceRoof = northWest90RoomRoof
+                        roomToPlace = allRooms.northWest90Room
+                        roomToPlaceRoof = allRooms.northWest90RoomRoof
                         
                     }
                     
@@ -1189,11 +461,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = southWest90
-                        roomToPlaceRoof = southWest90Roof
+                        roomToPlace = allRooms.southWest90
+                        roomToPlaceRoof = allRooms.southWest90Roof
                     default:
-                        roomToPlace = southWest90Room
-                        roomToPlaceRoof = southWest90RoomRoof
+                        roomToPlace = allRooms.southWest90Room
+                        roomToPlaceRoof = allRooms.southWest90RoomRoof
                         
                     }
                     
@@ -1204,11 +476,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = southEast90
-                        roomToPlaceRoof = southEast90Roof
+                        roomToPlace = allRooms.southEast90
+                        roomToPlaceRoof = allRooms.southEast90Roof
                     default:
-                        roomToPlace = southEast90Room
-                        roomToPlaceRoof = southEast90RoomRoof
+                        roomToPlace = allRooms.southEast90Room
+                        roomToPlaceRoof = allRooms.southEast90RoomRoof
                         
                     }
                     
@@ -1219,11 +491,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = northTJunction
-                        roomToPlaceRoof = northTJunctionRoof
+                        roomToPlace = allRooms.northTJunction
+                        roomToPlaceRoof = allRooms.northTJunctionRoof
                     default:
-                        roomToPlace = northTJunctionRoom
-                        roomToPlaceRoof = northTJunctionRoomRoof
+                        roomToPlace = allRooms.northTJunctionRoom
+                        roomToPlaceRoof = allRooms.northTJunctionRoomRoof
                         
                     }
                     
@@ -1234,11 +506,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = westTJunction
-                        roomToPlaceRoof = westTJunctionRoof
+                        roomToPlace = allRooms.westTJunction
+                        roomToPlaceRoof = allRooms.westTJunctionRoof
                     default:
-                        roomToPlace = westTJunctionRoom
-                        roomToPlaceRoof = westTJunctionRoomRoof
+                        roomToPlace = allRooms.westTJunctionRoom
+                        roomToPlaceRoof = allRooms.westTJunctionRoomRoof
                         
                     }
                     
@@ -1249,11 +521,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = eastTJunction
-                        roomToPlaceRoof = eastTJunctionRoof
+                        roomToPlace = allRooms.eastTJunction
+                        roomToPlaceRoof = allRooms.eastTJunctionRoof
                     default:
-                        roomToPlace = eastTJunctionRoom
-                        roomToPlaceRoof = eastTJunctionRoomRoof
+                        roomToPlace = allRooms.eastTJunctionRoom
+                        roomToPlaceRoof = allRooms.eastTJunctionRoomRoof
                         
                     }
                     
@@ -1264,11 +536,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = southTJunction
-                        roomToPlaceRoof = southTJunctionRoof
+                        roomToPlace = allRooms.southTJunction
+                        roomToPlaceRoof = allRooms.southTJunctionRoof
                     default:
-                        roomToPlace = southTJunctionRoom
-                        roomToPlaceRoof = southTJunctionRoomRoof
+                        roomToPlace = allRooms.southTJunctionRoom
+                        roomToPlaceRoof = allRooms.southTJunctionRoomRoof
                         
                     }
                     
@@ -1279,18 +551,18 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = xJunction
-                        roomToPlaceRoof = xJunctionRoof
+                        roomToPlace = allRooms.xJunction
+                        roomToPlaceRoof = allRooms.xJunctionRoof
                     default:
-                        roomToPlace = xJunctionRoom
-                        roomToPlaceRoof = xJunctionRoomRoof
+                        roomToPlace = allRooms.xJunctionRoom
+                        roomToPlaceRoof = allRooms.xJunctionRoomRoof
                         
                     }
                     
                 default:
                     
-                    roomToPlace = void
-                    roomToPlaceRoof = voidRoof
+                    roomToPlace = allRooms.void
+                    roomToPlaceRoof = allRooms.voidRoof
                     
                 }
                 
@@ -1499,8 +771,6 @@ class GameScene: SKScene {
         
     }
     
-    
-    
     //Function for the player attacking
     
     func playerAttack(attackDirection: String) {
@@ -1614,11 +884,8 @@ class GameScene: SKScene {
             break
             
         }
-        
     }
-    
-    
-    
+
     //Functions for making the camera follow the player
     
     func updateCamera() {
@@ -1637,5 +904,4 @@ class GameScene: SKScene {
         updateCamera()
         
     }
-    
 }
