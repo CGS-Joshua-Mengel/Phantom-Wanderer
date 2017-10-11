@@ -10,7 +10,729 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    var northDeadEnd = allRooms.northDeadEnd
+    //
+    //      D E A D   E N D S
+    //
+    
+    // North Dead End
+    
+    let northDeadEnd = [
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northDeadEndRoof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // North Dead End Room
+    
+    let northDeadEndRoom = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northDeadEndRoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // East Dead End
+    
+    let eastDeadEnd = [
+        [3,3,3,3,3,3,3],
+        [3,3,2,2,2,2,2],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let eastDeadEndRoof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // East Dead End Room
+    
+    let eastDeadEndRoom = [
+        [3,2,2,2,2,2,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,2],
+        [3,0,0,0,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let eastDeadEndRoomRoof = [
+        [1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // South Dead End
+    
+    let southDeadEnd = [
+        [3,3,3,3,3,3,3],
+        [3,3,2,2,2,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let southDeadEndRoof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // South Dead End Room
+    
+    let southDeadEndRoom = [
+        [3,2,2,2,2,2,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let southDeadEndRoomRoof = [
+        [1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    // West Dead End
+    
+    let westDeadEnd = [
+        [3,3,3,3,3,3,3],
+        [2,2,2,2,2,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let westDeadEndRoof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // West Dead End Room
+    
+    let westDeadEndRoom = [
+        [3,2,2,2,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,3],
+        [0,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let westDeadEndRoomRoof = [
+        [1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    //
+    //
+    //
+    
+    //
+    //      S T R A I G H T S
+    //
+    
+    //Horizontal Straight
+    
+    let horizontalStraight = [
+        [3,3,3,3,3,3,3],
+        [2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let horizontalStraightRoof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    //Horizontal Straight Room
+    
+    let horizontalStraightRoom = [
+        [3,2,2,2,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,2],
+        [0,0,0,0,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let horizontalStraightRoomRoof = [
+        [1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // Vertical Straight
+    
+    let verticalStraight = [
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let verticalStraightRoof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // Vertical Straight Room
+    
+    let verticalStraightRoom = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let verticalStraightRoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    //
+    //
+    //
+    
+    //
+    //      9 0   D E G R E E S
+    //
+    
+    // North West 90
+    
+    let northWest90 = [
+        [3,3,0,0,0,3,3],
+        [2,2,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northWest90Roof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // North West 90 Room
+    
+    let northWest90Room = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,3],
+        [0,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northWest90RoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    //North East 90
+    
+    let northEast90 = [
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,2,2],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northEast90Roof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    //North East 90 Room
+    
+    let northEast90Room = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,2],
+        [3,0,0,0,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northEast90RoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // South East 90
+    
+    let southEast90 = [
+        [3,3,3,3,3,3,3],
+        [3,3,2,2,2,2,2],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let southEast90Roof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // South East 90 Room
+    
+    let southEast90Room = [
+        [3,2,2,2,2,2,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,2],
+        [3,0,0,0,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let southEast90RoomRoof = [
+        [1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    // South West 90
+    
+    let southWest90 = [
+        [3,3,3,3,3,3,3],
+        [2,2,2,2,2,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let southWest90Roof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // South West 90 Room
+    
+    let southWest90Room = [
+        [3,2,2,2,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,3],
+        [0,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let southWest90RoomRoof = [
+        [1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    //
+    //
+    //
+    
+    //
+    //      T   J U N C T I O N S
+    //
+    
+    // North T Junction
+    
+    let northTJunction = [
+        [3,3,0,0,0,3,3],
+        [2,2,0,0,0,2,2],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northTJunctionRoof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // North T Junction Room
+    
+    let northTJunctionRoom = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,2],
+        [0,0,0,0,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let northTJunctionRoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    // East T Junction
+    
+    let eastTJunction = [
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,2,2],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,0,0],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let eastTJunctionRoof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,0,0],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // East T Junction Room
+    
+    let eastTJunctionRoom = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,2],
+        [3,0,0,0,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let eastTJunctionRoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    // South T Junction
+    
+    let southTJunction = [
+        [3,3,3,3,3,3,3],
+        [2,2,2,2,2,2,2],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let southTJunctionRoof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // South T Junction Room
+    
+    let southTJunctionRoom = [
+        [3,2,2,2,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,2],
+        [0,0,0,0,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let southTJunctionRoomRoof = [
+        [1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    // West T Junction
+    
+    let westTJunction = [
+        [3,3,0,0,0,3,3],
+        [2,2,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [0,0,0,0,0,3,3],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let westTJunctionRoof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [0,0,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // West T Junction Room
+    
+    let westTJunctionRoom = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,3],
+        [0,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let westTJunctionRoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    //
+    //
+    //
+    
+    //
+    //      X   J U N C T I O N S
+    //
+    
+    // X Junction
+    
+    let xJunction = [
+        [3,3,0,0,0,3,3],
+        [2,2,0,0,0,2,2],
+        [0,0,0,0,0,0,0],
+        [0,0,0,4,0,0,0],
+        [0,0,0,0,0,0,0],
+        [3,3,0,0,0,3,3],
+        [3,3,0,0,0,3,3]
+    ]
+    
+    let xJunctionRoof = [
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [1,1,0,0,0,1,1],
+        [1,1,0,0,0,1,1]
+    ]
+    
+    // X Junction Room
+    
+    let xJunctionRoom = [
+        [3,2,2,0,2,2,3],
+        [3,0,0,0,0,0,3],
+        [2,0,0,0,0,0,2],
+        [0,0,0,4,0,0,0],
+        [3,0,0,0,0,0,3],
+        [3,0,0,0,0,0,3],
+        [3,3,2,0,2,3,3]
+    ]
+    
+    let xJunctionRoomRoof = [
+        [1,1,1,0,1,1,1],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [0,0,0,0,0,0,0],
+        [1,0,0,0,0,0,1],
+        [1,0,0,0,0,0,1],
+        [1,1,1,0,1,1,1]
+    ]
+    
+    let void = [
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3],
+        [3,3,3,3,3,3,3]
+    ]
+    
+    let voidRoof = [
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1]
+    ]
+    
+    //
+    //
+    //
+    
+    //
+    //      D U N G E O N   L A Y O U T   G E N E R A T I O N
+    //
     
     var upList = [1,5,7,8,11,12,13,15]
     var downList = [3,5,9,10,12,13,14,15]
@@ -143,10 +865,22 @@ class GameScene: SKScene {
     }
     
     //
+    //
+    //
+    
+    //
     //      M E C H A N I C S
     //
     
+    
+    
     //All variables
+    
+    var skeletonFrames = [SKTexture]()
+    
+    var skeletonAnimation : SKAction!
+    
+    var skeletonAnimating = true
     
     var updatedPlayerPosition = CGPoint()
     var moveAction: SKAction!
@@ -275,6 +1009,12 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        let _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { (timer) in
+        
+            self.makeEnemy()
+            
+        }
+        
         let walkUpFrames = [playerWalkUpOne, playerWalkUpOne, playerWalkUpTwo, playerWalkUpThree, playerWalkUpThree, playerWalkUpFour]
         let walkRightFrames = [playerWalkRightOne, playerWalkRightOne, playerWalkRightTwo, playerWalkRightThree, playerWalkRightThree, playerWalkRightFour]
         let walkLeftFrames = [playerWalkLeftOne, playerWalkLeftOne, playerWalkLeftTwo, playerWalkLeftThree, playerWalkLeftThree, playerWalkLeftFour]
@@ -297,7 +1037,54 @@ class GameScene: SKScene {
         
     }
     
-    
+    func spawnChest(spawnPoint: CGPoint) {
+        
+        //Chest
+        let chest = SKSpriteNode()
+        let chestTexture = SKTexture(imageNamed: "Chest")
+        
+        chest.texture = chestTexture
+        chest.size = chestTexture.size()
+        chest.zPosition = 15
+        chest.lightingBitMask = 1
+        
+        chest.position = spawnPoint
+        //
+        
+        //Chest Light
+        let chestLight = SKLightNode()
+        chestLight.lightColor = UIColor.yellow
+        chestLight.shadowColor = UIColor.clear
+        chestLight.falloff = 3
+        
+        chest.addChild(chestLight)
+        //
+        
+        //Chest Emitter
+        let chestEmitter = SKEmitterNode()
+        let chestParticleTextureOne = SKTexture(imageNamed: "ChestParticleOne")
+        let chestParticleTextureTwo = SKTexture(imageNamed: "ChestParticleTwo")
+        let chestParticleTextureThree = SKTexture(imageNamed: "ChestParticleThree")
+        let chestParticleTextureFour = SKTexture(imageNamed: "ChestParticleFour")
+        let chestParticleFrames = [chestParticleTextureTwo, chestParticleTextureThree, chestParticleTextureFour, chestParticleTextureThree, chestParticleTextureTwo]
+        let chestParticleAnimation = SKAction.animate(with: chestParticleFrames, timePerFrame: 0.1)
+        
+        chestEmitter.particleTexture = chestParticleTextureTwo
+        chestEmitter.particleSize = chestParticleTextureOne.size()
+        chestEmitter.particleAction = chestParticleAnimation
+        chestEmitter.particleLifetime = 0.5
+        chestEmitter.particlePositionRange = CGVector(dx: chest.size.width, dy: chest.size.width)
+        chestEmitter.particleBirthRate = 1
+        chestEmitter.zPosition = 16
+        
+        chest.addChild(chestEmitter)
+        //
+        
+        self.addChild(chest)
+        
+        
+        
+    }
     
     //Function for placing the map
     
@@ -341,11 +1128,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.northDeadEnd
-                        roomToPlaceRoof = allRooms.northDeadEndRoof
+                        roomToPlace = northDeadEnd
+                        roomToPlaceRoof = northDeadEndRoof
                     default:
-                        roomToPlace = allRooms.northDeadEndRoom
-                        roomToPlaceRoof = allRooms.northDeadEndRoomRoof
+                        roomToPlace = northDeadEndRoom
+                        roomToPlaceRoof = northDeadEndRoomRoof
                         
                     }
                     
@@ -356,11 +1143,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.westDeadEnd
-                        roomToPlaceRoof = allRooms.westDeadEndRoof
+                        roomToPlace = westDeadEnd
+                        roomToPlaceRoof = westDeadEndRoof
                     default:
-                        roomToPlace = allRooms.westDeadEndRoom
-                        roomToPlaceRoof = allRooms.westDeadEndRoomRoof
+                        roomToPlace = westDeadEndRoom
+                        roomToPlaceRoof = westDeadEndRoomRoof
                         
                     }
                     
@@ -371,11 +1158,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.southDeadEnd
-                        roomToPlaceRoof = allRooms.southDeadEndRoof
+                        roomToPlace = southDeadEnd
+                        roomToPlaceRoof = southDeadEndRoof
                     default:
-                        roomToPlace = allRooms.southDeadEndRoom
-                        roomToPlaceRoof = allRooms.southDeadEndRoomRoof
+                        roomToPlace = southDeadEndRoom
+                        roomToPlaceRoof = southDeadEndRoomRoof
                         
                     }
                     
@@ -386,11 +1173,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.eastDeadEnd
-                        roomToPlaceRoof = allRooms.eastDeadEndRoof
+                        roomToPlace = eastDeadEnd
+                        roomToPlaceRoof = eastDeadEndRoof
                     default:
-                        roomToPlace = allRooms.eastDeadEndRoom
-                        roomToPlaceRoof = allRooms.eastDeadEndRoomRoof
+                        roomToPlace = eastDeadEndRoom
+                        roomToPlaceRoof = eastDeadEndRoomRoof
                         
                     }
                     
@@ -401,11 +1188,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.verticalStraight
-                        roomToPlaceRoof = allRooms.verticalStraightRoof
+                        roomToPlace = verticalStraight
+                        roomToPlaceRoof = verticalStraightRoof
                     default:
-                        roomToPlace = allRooms.verticalStraightRoom
-                        roomToPlaceRoof = allRooms.verticalStraightRoomRoof
+                        roomToPlace = verticalStraightRoom
+                        roomToPlaceRoof = verticalStraightRoomRoof
                         
                     }
                     
@@ -416,11 +1203,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.horizontalStraight
-                        roomToPlaceRoof = allRooms.horizontalStraightRoof
+                        roomToPlace = horizontalStraight
+                        roomToPlaceRoof = horizontalStraightRoof
                     default:
-                        roomToPlace = allRooms.horizontalStraightRoom
-                        roomToPlaceRoof = allRooms.horizontalStraightRoomRoof
+                        roomToPlace = horizontalStraightRoom
+                        roomToPlaceRoof = horizontalStraightRoomRoof
                         
                     }
                     
@@ -431,11 +1218,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.northEast90
-                        roomToPlaceRoof = allRooms.northEast90Roof
+                        roomToPlace = northEast90
+                        roomToPlaceRoof = northEast90Roof
                     default:
-                        roomToPlace = allRooms.northEast90Room
-                        roomToPlaceRoof = allRooms.northEast90RoomRoof
+                        roomToPlace = northEast90Room
+                        roomToPlaceRoof = northEast90RoomRoof
                         
                     }
                     
@@ -446,11 +1233,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.northWest90
-                        roomToPlaceRoof = allRooms.northWest90Roof
+                        roomToPlace = northWest90
+                        roomToPlaceRoof = northWest90Roof
                     default:
-                        roomToPlace = allRooms.northWest90Room
-                        roomToPlaceRoof = allRooms.northWest90RoomRoof
+                        roomToPlace = northWest90Room
+                        roomToPlaceRoof = northWest90RoomRoof
                         
                     }
                     
@@ -461,11 +1248,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.southWest90
-                        roomToPlaceRoof = allRooms.southWest90Roof
+                        roomToPlace = southWest90
+                        roomToPlaceRoof = southWest90Roof
                     default:
-                        roomToPlace = allRooms.southWest90Room
-                        roomToPlaceRoof = allRooms.southWest90RoomRoof
+                        roomToPlace = southWest90Room
+                        roomToPlaceRoof = southWest90RoomRoof
                         
                     }
                     
@@ -476,11 +1263,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.southEast90
-                        roomToPlaceRoof = allRooms.southEast90Roof
+                        roomToPlace = southEast90
+                        roomToPlaceRoof = southEast90Roof
                     default:
-                        roomToPlace = allRooms.southEast90Room
-                        roomToPlaceRoof = allRooms.southEast90RoomRoof
+                        roomToPlace = southEast90Room
+                        roomToPlaceRoof = southEast90RoomRoof
                         
                     }
                     
@@ -491,11 +1278,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.northTJunction
-                        roomToPlaceRoof = allRooms.northTJunctionRoof
+                        roomToPlace = northTJunction
+                        roomToPlaceRoof = northTJunctionRoof
                     default:
-                        roomToPlace = allRooms.northTJunctionRoom
-                        roomToPlaceRoof = allRooms.northTJunctionRoomRoof
+                        roomToPlace = northTJunctionRoom
+                        roomToPlaceRoof = northTJunctionRoomRoof
                         
                     }
                     
@@ -506,11 +1293,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.westTJunction
-                        roomToPlaceRoof = allRooms.westTJunctionRoof
+                        roomToPlace = westTJunction
+                        roomToPlaceRoof = westTJunctionRoof
                     default:
-                        roomToPlace = allRooms.westTJunctionRoom
-                        roomToPlaceRoof = allRooms.westTJunctionRoomRoof
+                        roomToPlace = westTJunctionRoom
+                        roomToPlaceRoof = westTJunctionRoomRoof
                         
                     }
                     
@@ -521,11 +1308,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.eastTJunction
-                        roomToPlaceRoof = allRooms.eastTJunctionRoof
+                        roomToPlace = eastTJunction
+                        roomToPlaceRoof = eastTJunctionRoof
                     default:
-                        roomToPlace = allRooms.eastTJunctionRoom
-                        roomToPlaceRoof = allRooms.eastTJunctionRoomRoof
+                        roomToPlace = eastTJunctionRoom
+                        roomToPlaceRoof = eastTJunctionRoomRoof
                         
                     }
                     
@@ -536,11 +1323,11 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.southTJunction
-                        roomToPlaceRoof = allRooms.southTJunctionRoof
+                        roomToPlace = southTJunction
+                        roomToPlaceRoof = southTJunctionRoof
                     default:
-                        roomToPlace = allRooms.southTJunctionRoom
-                        roomToPlaceRoof = allRooms.southTJunctionRoomRoof
+                        roomToPlace = southTJunctionRoom
+                        roomToPlaceRoof = southTJunctionRoomRoof
                         
                     }
                     
@@ -551,18 +1338,18 @@ class GameScene: SKScene {
                     switch randomRoomDecider {
                         
                     case 1:
-                        roomToPlace = allRooms.xJunction
-                        roomToPlaceRoof = allRooms.xJunctionRoof
+                        roomToPlace = xJunction
+                        roomToPlaceRoof = xJunctionRoof
                     default:
-                        roomToPlace = allRooms.xJunctionRoom
-                        roomToPlaceRoof = allRooms.xJunctionRoomRoof
+                        roomToPlace = xJunctionRoom
+                        roomToPlaceRoof = xJunctionRoomRoof
                         
                     }
                     
                 default:
                     
-                    roomToPlace = allRooms.void
-                    roomToPlaceRoof = allRooms.voidRoof
+                    roomToPlace = void
+                    roomToPlaceRoof = voidRoof
                     
                 }
                 
@@ -573,6 +1360,10 @@ class GameScene: SKScene {
                         switch j {
                         case 0:
                             bgNode.setTileGroup(bgGroup3, forColumn: columnNo, row: rowNo)
+                        case 4:
+                            bgNode.setTileGroup(bgGroup3, forColumn: columnNo, row: rowNo)
+                            spawnChest(spawnPoint: bgNode.centerOfTile(atColumn: columnNo, row: rowNo))
+                            print("chest spawned")
                         case 2:
                             bgNode.setTileGroup(bgGroup2, forColumn: columnNo, row: rowNo)
                         default:
@@ -627,10 +1418,21 @@ class GameScene: SKScene {
     }
     
     
+    //Floor z = 10
+    //Player z = 20
+    //Skull z = 35
+    //Skull light z = 36
+    //Roof z = 30
+    //Sword z = 29
+    
     
     //Function for the player moving
     
     func playerMove(label: String) {
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { (timer) in
+            self.enemyMove()
+        }
         
         if isMoving == false {
             
@@ -771,15 +1573,18 @@ class GameScene: SKScene {
         
     }
     
+    
+    
     //Function for the player attacking
     
     func playerAttack(attackDirection: String) {
         
         let attackSprite = SKSpriteNode()
         
-        attackSprite.size = SKTexture(imageNamed: "SwordSwipeOne").size()
+        attackSprite.size = CGSize(width: (SKTexture(imageNamed: "SwordSwipeOne").size().width / 3) * 2, height: (SKTexture(imageNamed: "SwordSwipeOne").size().height / 3) * 2)
         attackSprite.anchorPoint = CGPoint(x: 0.5, y: 0)
-        attackSprite.zPosition = 100
+        attackSprite.zPosition = 29
+        attackSprite.lightingBitMask = 1
         
         //Frames for the sword swipe animation
         let swipeOne = SKTexture(imageNamed: "SwordSwipeOne")
@@ -884,8 +1689,134 @@ class GameScene: SKScene {
             break
             
         }
+        
     }
-
+    
+    var enemyArray = [SKSpriteNode]()
+    
+    func makeEnemy() {
+        
+        let skeletonTextureOne = SKTexture(imageNamed: "SkeletonOne")
+        let skeletonTextureTwo = SKTexture(imageNamed: "SkeletonTwo")
+        let skeletonTextureThree = SKTexture(imageNamed: "SkeletonThree")
+        let skeletonTextureFour = SKTexture(imageNamed: "SkeletonFour")
+        let skeletonTextureFive = SKTexture(imageNamed: "SkeletonFive")
+        
+        let skeleton = SKSpriteNode()
+        
+        skeleton.texture = skeletonTextureOne
+        skeleton.size = skeletonTextureOne.size()
+        skeleton.position = bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow + 2)
+        skeleton.zPosition = 35
+        skeleton.lightingBitMask = 1
+        
+        
+        skeletonFrames = [skeletonTextureOne, skeletonTextureTwo, skeletonTextureThree, skeletonTextureFour, skeletonTextureFive]
+        
+        skeletonAnimation = SKAction.animate(with: skeletonFrames, timePerFrame: 0.1)
+        
+        let skeletonLight = SKLightNode()
+        skeletonLight.lightColor = UIColor.purple
+        skeletonLight.falloff = 2
+        skeletonLight.shadowColor = UIColor.clear
+        skeletonLight.zPosition = 36
+        skeleton.addChild(skeletonLight)
+        
+        self.addChild(skeleton)
+        
+        animateSkeleton(node: skeleton)
+        
+        enemyArray.append(skeleton)
+        
+    }
+    
+    var randomEnemyPosition : Int!
+    
+    //Move 2 tiles away from the player
+    var enemyPositionUpTwo : SKAction!
+    var enemyPositionRightTwo : SKAction!
+    var enemyPositionDownTwo : SKAction!
+    var enemyPositionLeftTwo : SKAction!
+    
+    //Move 1 tile away from the player
+    var enemyPositionUpOne : SKAction!
+    var enemyPositionRightOne : SKAction!
+    var enemyPositionDownOne : SKAction!
+    var enemyPositionLeftOne : SKAction!
+    
+    func enemyMove() {
+        
+        enemyPositionUpTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow + 2), duration: 0.5)
+        enemyPositionRightTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn + 2, row: playerPositionRow), duration: 0.5)
+        enemyPositionDownTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow - 2), duration: 0.5)
+        enemyPositionLeftTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn - 2, row: playerPositionRow), duration: 0.5)
+        
+        enemyPositionUpOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow + 1), duration: 0.5)
+        enemyPositionRightOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn + 1, row: playerPositionRow), duration: 0.5)
+        enemyPositionDownOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow - 1), duration: 0.5)
+        enemyPositionLeftOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn - 1, row: playerPositionRow), duration: 0.5)
+        
+        for i in enemyArray {
+            
+            randomEnemyPosition = Int(arc4random_uniform(4))
+            
+            switch randomEnemyPosition {
+                
+            case 0:
+                if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 2) == bgGroup3 && i.position.y >= player.position.y {
+                    i.run(enemyPositionUpTwo)
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 2) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 1) == bgGroup3 && i.position.y >= player.position.y {
+                    i.run(enemyPositionUpOne)
+                } else {
+                    enemyMove()
+                }
+            case 1:
+                if bgNode.tileGroup(atColumn: playerPositionColumn + 2, row: playerPositionRow) == bgGroup3 && i.position.x >= player.position.x {
+                    i.run(enemyPositionRightTwo)
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn + 2, row: playerPositionRow) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn + 1, row: playerPositionRow) == bgGroup3 && i.position.x >= player.position.x {
+                    i.run(enemyPositionRightOne)
+                } else {
+                    enemyMove()
+                }
+            case 2:
+                if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 2) == bgGroup3 && i.position.y <= player.position.y {
+                    i.run(enemyPositionDownTwo)
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 2) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 1) == bgGroup3 && i.position.y <= player.position.y {
+                    i.run(enemyPositionDownOne)
+                } else {
+                    enemyMove()
+                }
+            case 3:
+                if bgNode.tileGroup(atColumn: playerPositionColumn - 2, row: playerPositionRow) == bgGroup3 && i.position.x <= player.position.x {
+                    i.run(enemyPositionLeftTwo)
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn - 2, row: playerPositionRow) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn - 1, row: playerPositionRow) == bgGroup3 && i.position.x <= player.position.x {
+                    i.run(enemyPositionLeftOne)
+                } else {
+                    enemyMove()
+                }
+            default:
+                break
+                
+            }
+            
+        }
+        
+    }
+    
+    func animateSkeleton(node: SKSpriteNode) {
+        
+        if skeletonAnimating == true {
+            
+            node.run(skeletonAnimation)
+            
+            let _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
+                self.animateSkeleton(node: node)
+            }
+            
+        }
+        
+    }
+    
     //Functions for making the camera follow the player
     
     func updateCamera() {
@@ -904,4 +1835,5 @@ class GameScene: SKScene {
         updateCamera()
         
     }
+    
 }
