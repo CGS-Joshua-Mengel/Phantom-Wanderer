@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {    
+class GameScene: SKScene {
     //
     //      D U N G E O N   L A Y O U T   G E N E R A T I O N
     //
@@ -28,13 +28,30 @@ class GameScene: SKScene {
         [0,0,0,0,0,0,0]
     ]
     
+    //Variables for the current floor, and min/max ranges of the floor size.
+    var currentFloor = 1
+    var rangeMin = 5
+    var rangeMax = 10
+    
+    //The function that actually makes the floor.
     func makeFloor(y:Int, x:Int, prev:String) {
         
+        //Sets the actual ranges relative to the current floor.
+        if currentFloor < 40 {
+            rangeMin = 4 + currentFloor
+            rangeMax = 9 + currentFloor
+        } else {
+            rangeMin = 44
+            rangeMax = 49
+        }
+        
+        //Variables that determine whether or not the generation will continue in ___ direciton.
         var doup = 0
         var dodown = 0
         var doleft = 0
         var doright = 0
         
+        //If statements that determine the values of the aforementioned variables.
         if (y > 0 && floor[y-1][x] != 0) {
             if downList.contains(floor[y-1][x]) == false {
                 doup = 1
@@ -72,8 +89,10 @@ class GameScene: SKScene {
             doright = 1
         }
         
+        //Declaring the variable that determines what room will be used.
         var ranNum = 0
         
+        //A loop that keeps selecting random room values until it chooses one that works properly given its surroundings.
         while floor[y][x] == 0 {
             ranNum = Int(arc4random_uniform(8))
             if prev == "down" {
@@ -113,6 +132,7 @@ class GameScene: SKScene {
             }
         }
         
+        //Variables/IFs that check if the current room faces ___ direction.
         var isup = false
         var isdown = false
         var isleft = false
@@ -129,6 +149,8 @@ class GameScene: SKScene {
         if rightList.contains(floor[y][x]) {
             isright = true
         }
+        
+        //The actual recursive element of this function : Call itself again in adjacent directions if the former variables are true.
         if (y > 0 && floor[y-1][x] == 0 && isup == true) {
             makeFloor(y: y-1, x: x, prev: "down")
         }
@@ -143,22 +165,91 @@ class GameScene: SKScene {
         }
     }
     
-    //
-    //
-    //
+    //Places an exit in a random room on the map, provided said room is not the centre.
+    func placeStairs() {
+        var hasPlaced = false
+        var stairPosX = 0
+        var stairPosY = 0
+        while (hasPlaced == false) {
+            stairPosX = Int(arc4random_uniform(7))
+            stairPosY = Int(arc4random_uniform(7))
+            if (stairPosX == 3 && stairPosY == 3) {
+                
+            } else if (floor[stairPosY][stairPosX] != 0) {
+                floor[stairPosY][stairPosX] = 16
+                hasPlaced = true
+            }
+        }
+    }
+    
+    //Places loot on the map based on the amountOfLoot Variable. Does not place in the middle.
+    //Also will not place upon the stairs or other loot positions.
+    func placeLoot() {
+        
+        //The amount of chests on each floor, based off of the current floor maximum range divided by 5, rounded down.
+        let amountOfLoot = rangeMax/5
+        
+        var hasPlaced = 0
+        var lootPosX = 0
+        var lootPosY = 0
+        while (hasPlaced < amountOfLoot) {
+            lootPosX = Int(arc4random_uniform(7))
+            lootPosY = Int(arc4random_uniform(7))
+            if (lootPosX == 3 && lootPosY == 3) {
+                
+            } else if (floor[lootPosY][lootPosX] != 0 && floor[lootPosY][lootPosX] != 16 && floor[lootPosY][lootPosX] != 17) {
+                floor[lootPosY][lootPosX] = 17
+                hasPlaced += 1
+            }
+        }
+    }
+    
+    //The overall function controlling the makeFloor function and also 'enforcing' the floor sizes.
+    func overallControl() {
+        makeFloor(y: 3, x: 3, prev:"start")
+        var count3 = 0
+        var count4 = 0
+        var count0 = 0
+        
+        //Checks the amount of rooms within the floor
+        while count3 < floor.count {
+            while count4 < floor[count3].count {
+                if floor[count3][count4] != 0 {
+                    count0 += 1
+                }
+                count4 = count4 + 1
+            }
+            count3 = count3 + 1
+            count4 = 0
+        }
+        
+        //Checks whether said amount of rooms fits within the range. If it isn't, it wipes it and re-gens.
+        //Otherwise, it will generate the exit and loot as per normal
+        if (count0 >= rangeMin && count0 <= rangeMax) {
+            placeStairs()
+            placeLoot()
+        } else {
+            floor = [
+                [0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0]
+            ]
+            overallControl()
+        }
+    }
     
     //
     //      M E C H A N I C S
     //
     
-    
-    
     //All variables
     
     var skeletonFrames = [SKTexture]()
-    
     var skeletonAnimation : SKAction!
-    
     var skeletonAnimating = true
     
     var updatedPlayerPosition = CGPoint()
@@ -242,8 +333,6 @@ class GameScene: SKScene {
         [0,0,0,0,0,0,0]
     ]
     
-    
-    
     //Functions for making the player face different directions
     
     func animateUp() {
@@ -282,16 +371,12 @@ class GameScene: SKScene {
         }
     }
     
-    
-    
     //Things that happen on startup
     
     override func didMove(to view: SKView) {
         
         let _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { (timer) in
-        
             self.makeEnemy()
-            
         }
         
         let walkUpFrames = [playerWalkUpOne, playerWalkUpOne, playerWalkUpTwo, playerWalkUpThree, playerWalkUpThree, playerWalkUpFour]
@@ -309,11 +394,8 @@ class GameScene: SKScene {
         player = self.childNode(withName: "player") as? SKSpriteNode
         
         setupMap()
-        
         updateCamera()
-        
         animateDown()
-        
     }
     
     func spawnChest(spawnPoint: CGPoint) {
@@ -328,7 +410,6 @@ class GameScene: SKScene {
         chest.lightingBitMask = 1
         
         chest.position = spawnPoint
-        //
         
         //Chest Light
         let chestLight = SKLightNode()
@@ -337,7 +418,6 @@ class GameScene: SKScene {
         chestLight.falloff = 3
         
         chest.addChild(chestLight)
-        //
         
         //Chest Emitter
         let chestEmitter = SKEmitterNode()
@@ -357,12 +437,7 @@ class GameScene: SKScene {
         chestEmitter.zPosition = 16
         
         chest.addChild(chestEmitter)
-        //
-        
         self.addChild(chest)
-        
-        
-        
     }
     
     //Function for placing the map
@@ -395,39 +470,31 @@ class GameScene: SKScene {
         bgNodeRoof.lightingBitMask = 1
         
         for row in floor {
-            
             for column in row {
-                
                 switch column {
-                    
                 case 1:
                     
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.northDeadEnd
                         roomToPlaceRoof = allRooms.northDeadEndRoof
                     default:
                         roomToPlace = allRooms.northDeadEndRoom
                         roomToPlaceRoof = allRooms.northDeadEndRoomRoof
-                        
                     }
                     
                 case 2:
                     
                     randomRoomDecider = Int(arc4random_uniform(2))
-                    
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.westDeadEnd
                         roomToPlaceRoof = allRooms.westDeadEndRoof
                     default:
                         roomToPlace = allRooms.westDeadEndRoom
                         roomToPlaceRoof = allRooms.westDeadEndRoomRoof
-                        
                     }
                     
                 case 3:
@@ -435,14 +502,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.southDeadEnd
                         roomToPlaceRoof = allRooms.southDeadEndRoof
                     default:
                         roomToPlace = allRooms.southDeadEndRoom
                         roomToPlaceRoof = allRooms.southDeadEndRoomRoof
-                        
                     }
                     
                 case 4:
@@ -450,14 +515,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.eastDeadEnd
                         roomToPlaceRoof = allRooms.eastDeadEndRoof
                     default:
                         roomToPlace = allRooms.eastDeadEndRoom
                         roomToPlaceRoof = allRooms.eastDeadEndRoomRoof
-                        
                     }
                     
                 case 5:
@@ -465,14 +528,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.verticalStraight
                         roomToPlaceRoof = allRooms.verticalStraightRoof
                     default:
                         roomToPlace = allRooms.verticalStraightRoom
                         roomToPlaceRoof = allRooms.verticalStraightRoomRoof
-                        
                     }
                     
                 case 6:
@@ -480,14 +541,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.horizontalStraight
                         roomToPlaceRoof = allRooms.horizontalStraightRoof
                     default:
                         roomToPlace = allRooms.horizontalStraightRoom
                         roomToPlaceRoof = allRooms.horizontalStraightRoomRoof
-                        
                     }
                     
                 case 7:
@@ -495,14 +554,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.northEast90
                         roomToPlaceRoof = allRooms.northEast90Roof
                     default:
                         roomToPlace = allRooms.northEast90Room
                         roomToPlaceRoof = allRooms.northEast90RoomRoof
-                        
                     }
                     
                 case 8:
@@ -510,14 +567,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.northWest90
                         roomToPlaceRoof = allRooms.northWest90Roof
                     default:
                         roomToPlace = allRooms.northWest90Room
                         roomToPlaceRoof = allRooms.northWest90RoomRoof
-                        
                     }
                     
                 case 9:
@@ -525,14 +580,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.southWest90
                         roomToPlaceRoof = allRooms.southWest90Roof
                     default:
                         roomToPlace = allRooms.southWest90Room
                         roomToPlaceRoof = allRooms.southWest90RoomRoof
-                        
                     }
                     
                 case 10:
@@ -540,14 +593,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.southEast90
                         roomToPlaceRoof = allRooms.southEast90Roof
                     default:
                         roomToPlace = allRooms.southEast90Room
                         roomToPlaceRoof = allRooms.southEast90RoomRoof
-                        
                     }
                     
                 case 11:
@@ -555,14 +606,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.northTJunction
                         roomToPlaceRoof = allRooms.northTJunctionRoof
                     default:
                         roomToPlace = allRooms.northTJunctionRoom
                         roomToPlaceRoof = allRooms.northTJunctionRoomRoof
-                        
                     }
                     
                 case 12:
@@ -570,14 +619,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.westTJunction
                         roomToPlaceRoof = allRooms.westTJunctionRoof
                     default:
                         roomToPlace = allRooms.westTJunctionRoom
                         roomToPlaceRoof = allRooms.westTJunctionRoomRoof
-                        
                     }
                     
                 case 13:
@@ -585,14 +632,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.eastTJunction
                         roomToPlaceRoof = allRooms.eastTJunctionRoof
                     default:
                         roomToPlace = allRooms.eastTJunctionRoom
                         roomToPlaceRoof = allRooms.eastTJunctionRoomRoof
-                        
                     }
                     
                 case 14:
@@ -600,14 +645,12 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.southTJunction
                         roomToPlaceRoof = allRooms.southTJunctionRoof
                     default:
                         roomToPlace = allRooms.southTJunctionRoom
                         roomToPlaceRoof = allRooms.southTJunctionRoomRoof
-                        
                     }
                     
                 case 15:
@@ -615,27 +658,21 @@ class GameScene: SKScene {
                     randomRoomDecider = Int(arc4random_uniform(2))
                     
                     switch randomRoomDecider {
-                        
                     case 1:
                         roomToPlace = allRooms.xJunction
                         roomToPlaceRoof = allRooms.xJunctionRoof
                     default:
                         roomToPlace = allRooms.xJunctionRoom
                         roomToPlaceRoof = allRooms.xJunctionRoomRoof
-                        
                     }
                     
                 default:
-                    
                     roomToPlace = allRooms.void
                     roomToPlaceRoof = allRooms.voidRoof
-                    
                 }
                 
                 for i in roomToPlace {
-                    
                     for j in i {
-                        
                         switch j {
                         case 0:
                             bgNode.setTileGroup(bgGroup3, forColumn: columnNo, row: rowNo)
@@ -655,9 +692,7 @@ class GameScene: SKScene {
                 }
                 
                 for i in roomToPlaceRoof {
-                    
                     for j in i {
-                        
                         switch j {
                         case 1:
                             bgNodeRoof.setTileGroup(bgGroup1, forColumn: roofColumnNo, row: roofRowNo)
@@ -669,19 +704,15 @@ class GameScene: SKScene {
                     roofColumnNo -= 7
                     roofRowNo -= 1
                 }
-                
                 columnNo += 7
                 roofColumnNo += 7
                 rowNo += 7
                 roofRowNo += 7
-                
             }
-            
             rowNo -= 7
             roofRowNo -= 7
             columnNo = 0
             roofColumnNo = 0
-            
         }
         
         self.addChild(bgNode)
@@ -693,7 +724,6 @@ class GameScene: SKScene {
         player.zPosition = 20
         
         player.position = bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow)
-        
     }
     
     
@@ -721,14 +751,13 @@ class GameScene: SKScene {
                 
                 //Change the direction the player is facing
                 if facingUp != true {
-                
+                    
                     facingUp = true
                     facingRight = false
                     facingDown = false
                     facingLeft = false
-                
-                    animateUp()
                     
+                    animateUp()
                 }
                 
                 //Only move if the tile you're moving to is dirt
@@ -741,28 +770,23 @@ class GameScene: SKScene {
                     isMoving = true
                     
                     let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
-                        
                         self.isMoving = false
-                        
                     }
-                    
                     player.run(moveAction)
-                    
                 }
                 
             case "ArrowRight":
                 
                 if facingRight != true {
-                
+                    
                     facingUp = false
                     facingRight = true
                     facingDown = false
                     facingLeft = false
-                
-                    animateRight()
-                
-                }
                     
+                    animateRight()
+                }
+                
                 if bgNode.tileGroup(atColumn: playerPositionColumn + 1, row: playerPositionRow) == bgGroup3 {
                     
                     playerPositionColumn += 1
@@ -772,28 +796,23 @@ class GameScene: SKScene {
                     isMoving = true
                     
                     let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
-                        
                         self.isMoving = false
-                        
                     }
-                    
                     player.run(moveAction)
-                    
                 }
                 
             case "ArrowDown":
                 
                 if facingDown != true {
-                
+                    
                     facingUp = false
                     facingRight = false
                     facingDown = true
                     facingLeft = false
-                
-                    animateDown()
-                
-                }
                     
+                    animateDown()
+                }
+                
                 if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 1) == bgGroup3 {
                     
                     playerPositionRow -= 1
@@ -803,17 +822,12 @@ class GameScene: SKScene {
                     isMoving = true
                     
                     let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
-                        
                         self.isMoving = false
-                        
                     }
-                    
                     player.run(moveAction)
-                    
                 }
                 
             case "ArrowLeft":
-                
                 if facingLeft != true {
                     
                     facingUp = false
@@ -822,7 +836,6 @@ class GameScene: SKScene {
                     facingLeft = true
                     
                     animateLeft()
-                    
                 }
                 
                 if bgNode.tileGroup(atColumn: playerPositionColumn - 1, row: playerPositionRow) == bgGroup3 {
@@ -834,25 +847,15 @@ class GameScene: SKScene {
                     isMoving = true
                     
                     let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
-                        
                         self.isMoving = false
-                        
                     }
-                    
                     player.run(moveAction)
-                    
                 }
-                
             default:
                 break
-                
             }
-            
         }
-        
     }
-    
-    
     
     //Function for the player attacking
     
@@ -889,7 +892,6 @@ class GameScene: SKScene {
                 facingLeft = false
                 
                 animateUp()
-                
             }
             
             //Playing the animation of the sword swiping
@@ -911,7 +913,6 @@ class GameScene: SKScene {
                 facingLeft = false
                 
                 animateRight()
-                
             }
             
             self.addChild(attackSprite)
@@ -932,7 +933,6 @@ class GameScene: SKScene {
                 facingLeft = false
                 
                 animateDown()
-                
             }
             
             self.addChild(attackSprite)
@@ -953,7 +953,6 @@ class GameScene: SKScene {
                 facingLeft = true
                 
                 animateLeft()
-                
             }
             
             self.addChild(attackSprite)
@@ -966,9 +965,7 @@ class GameScene: SKScene {
             
         default:
             break
-            
         }
-        
     }
     
     var enemyArray = [SKSpriteNode]()
@@ -989,7 +986,6 @@ class GameScene: SKScene {
         skeleton.zPosition = 35
         skeleton.lightingBitMask = 1
         
-        
         skeletonFrames = [skeletonTextureOne, skeletonTextureTwo, skeletonTextureThree, skeletonTextureFour, skeletonTextureFive]
         
         skeletonAnimation = SKAction.animate(with: skeletonFrames, timePerFrame: 0.1)
@@ -1006,7 +1002,6 @@ class GameScene: SKScene {
         animateSkeleton(node: skeleton)
         
         enemyArray.append(skeleton)
-        
     }
     
     var randomEnemyPosition : Int!
@@ -1036,7 +1031,6 @@ class GameScene: SKScene {
         enemyPositionLeftOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn - 1, row: playerPositionRow), duration: 0.5)
         
         for i in enemyArray {
-            
             randomEnemyPosition = Int(arc4random_uniform(4))
             
             switch randomEnemyPosition {
@@ -1077,13 +1071,20 @@ class GameScene: SKScene {
                 break
                 
             }
-            
         }
-        
+    }
+    
+    // Room regeneration
+    
+    func regenerate() {
+        //overallControl()
+        //setupMap()
+        //makeEnemy()
+        //updateCamera()
+        //animateDown()
     }
     
     func animateSkeleton(node: SKSpriteNode) {
-        
         if skeletonAnimating == true {
             
             node.run(skeletonAnimation)
@@ -1091,28 +1092,19 @@ class GameScene: SKScene {
             let _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
                 self.animateSkeleton(node: node)
             }
-            
         }
-        
     }
     
     //Functions for making the camera follow the player
     
     func updateCamera() {
-        
         if let camera = camera {
-            
             camera.position = CGPoint(x: player.position.x, y: player.position.y)
-            
         }
     }
     
     //Update the camera every frame
-    
     override func update(_ currentTime: TimeInterval) {
-        
         updateCamera()
-        
     }
-    
 }

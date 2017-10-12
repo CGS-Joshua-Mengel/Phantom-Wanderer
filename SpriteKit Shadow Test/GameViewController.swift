@@ -62,6 +62,10 @@ class GameViewController: UIViewController {
         myScene.playerAttack(attackDirection: attackLabel)
         
     }
+    
+    @IBAction func regenerate(_ sender: Any) {
+        myScene.regenerate()
+    }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
