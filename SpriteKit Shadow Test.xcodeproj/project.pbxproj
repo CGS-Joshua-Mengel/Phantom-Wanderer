@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A91AC7F61F8C5C2E00D9DB66 /* rooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91AC7F51F8C5C2E00D9DB66 /* rooms.swift */; };
+		A908AC0B1F8EE44700D5EDD4 /* Rooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = A908AC0A1F8EE44700D5EDD4 /* Rooms.swift */; };
 		FF2166081F2EA8AA004626FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2166071F2EA8AA004626FA /* AppDelegate.swift */; };
 		FF21660A1F2EA8AA004626FA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FF2166091F2EA8AA004626FA /* GameScene.sks */; };
 		FF21660C1F2EA8AA004626FA /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FF21660B1F2EA8AA004626FA /* Actions.sks */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A91AC7F51F8C5C2E00D9DB66 /* rooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rooms.swift; sourceTree = "<group>"; };
+		A908AC0A1F8EE44700D5EDD4 /* Rooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rooms.swift; sourceTree = "<group>"; };
 		FF2166041F2EA8AA004626FA /* SpriteKit Shadow Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpriteKit Shadow Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2166071F2EA8AA004626FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF2166091F2EA8AA004626FA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 				FF2166091F2EA8AA004626FA /* GameScene.sks */,
 				FF21660B1F2EA8AA004626FA /* Actions.sks */,
 				FF21660D1F2EA8AA004626FA /* GameScene.swift */,
-				A91AC7F51F8C5C2E00D9DB66 /* rooms.swift */,
+				A908AC0A1F8EE44700D5EDD4 /* Rooms.swift */,
 				FF21660F1F2EA8AA004626FA /* GameViewController.swift */,
 				FF2166111F2EA8AA004626FA /* Main.storyboard */,
 				FF2166141F2EA8AA004626FA /* Assets.xcassets */,
@@ -153,7 +153,7 @@
 			files = (
 				FF21660E1F2EA8AA004626FA /* GameScene.swift in Sources */,
 				FF2166101F2EA8AA004626FA /* GameViewController.swift in Sources */,
-				A91AC7F61F8C5C2E00D9DB66 /* rooms.swift in Sources */,
+				A908AC0B1F8EE44700D5EDD4 /* Rooms.swift in Sources */,
 				FF2166081F2EA8AA004626FA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
