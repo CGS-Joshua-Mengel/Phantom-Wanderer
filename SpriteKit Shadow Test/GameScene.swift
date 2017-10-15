@@ -447,6 +447,7 @@ class GameScene: SKScene {
         let tileTexture1 = SKTexture(imageNamed: "Roof")
         let tileTexture2 = SKTexture(imageNamed: "Wall")
         let tileTexture3 = SKTexture(imageNamed: "Floor")
+        let tileTexture4 = SKTexture(imageNamed: "Staircase")
         
         let bgDefinition1 = SKTileDefinition(texture: tileTexture1, size: tileTexture1.size())
         let bgGroup1 = SKTileGroup(tileDefinition: bgDefinition1)
@@ -457,7 +458,10 @@ class GameScene: SKScene {
         let bgDefinition3 = SKTileDefinition(texture: tileTexture3, size: tileTexture3.size())
         bgGroup3 = SKTileGroup(tileDefinition: bgDefinition3)
         
-        let tileSet = SKTileSet(tileGroups: [bgGroup1, bgGroup2, bgGroup3])
+        let bgDefinition4 = SKTileDefinition(texture: tileTexture4, size: tileTexture4.size())
+        let bgGroup4 = SKTileGroup(tileDefinition: bgDefinition4)
+        
+        let tileSet = SKTileSet(tileGroups: [bgGroup1, bgGroup2, bgGroup3, bgGroup4])
         bgNode = SKTileMapNode(tileSet: tileSet, columns: 49, rows: 49, tileSize: tileTexture1.size())
         bgNode.position = CGPoint(x: 0, y: 0)
         bgNode.setScale(1)
@@ -468,6 +472,8 @@ class GameScene: SKScene {
         
         bgNode.lightingBitMask = 1
         bgNodeRoof.lightingBitMask = 1
+        
+        print(floor)
         
         for row in floor {
             for column in row {
@@ -666,6 +672,16 @@ class GameScene: SKScene {
                         roomToPlaceRoof = allRooms.xJunctionRoomRoof
                     }
                     
+                case 16:
+                    
+                    roomToPlace = allRooms.lootRoom
+                    roomToPlaceRoof = allRooms.lootRoomRoof
+                    
+                case 17:
+                    
+                    roomToPlace = allRooms.stairRoom
+                    roomToPlaceRoof = allRooms.stairRoomRoof
+                
                 default:
                     roomToPlace = allRooms.void
                     roomToPlaceRoof = allRooms.voidRoof
@@ -680,6 +696,8 @@ class GameScene: SKScene {
                             bgNode.setTileGroup(bgGroup3, forColumn: columnNo, row: rowNo)
                             spawnChest(spawnPoint: bgNode.centerOfTile(atColumn: columnNo, row: rowNo))
                             print("chest spawned")
+                        case 5:
+                            bgNode.setTileGroup(bgGroup4, forColumn: columnNo, row: rowNo)
                         case 2:
                             bgNode.setTileGroup(bgGroup2, forColumn: columnNo, row: rowNo)
                         default:
