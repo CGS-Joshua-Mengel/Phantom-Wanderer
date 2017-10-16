@@ -1097,6 +1097,20 @@ class GameScene: SKScene {
     // Room regeneration
     
     func regenerate() {
+        // clear both tilemaps (bgnode and bgnode roof)
+        
+        floor = [
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0]
+        ]
+        
+        currentFloor += 1
+        
         //overallControl()
         //setupMap()
         //makeEnemy()
