@@ -167,7 +167,7 @@ class GameScene: SKScene {
     
     //Places an exit in a random room on the map, provided said room is not the centre.
     func placeStairs() {
-        print("stairs")
+        
         var hasPlaced = false
         var stairPosX = 0
         var stairPosY = 0
@@ -186,7 +186,7 @@ class GameScene: SKScene {
     //Places loot on the map based on the amountOfLoot Variable. Does not place in the middle.
     //Also will not place upon the stairs or other loot positions.
     func placeLoot() {
-        print("loot")
+        
         
         //The amount of chests on each floor, based off of the current floor maximum range divided by 5, rounded down.
         let amountOfLoot = rangeMax/5
@@ -260,6 +260,7 @@ class GameScene: SKScene {
     var randomRoomDecider: Int!
     
     var bgGroup3: SKTileGroup!
+    var bgGroup1: SKTileGroup!
     
     var isMoving = false
     
@@ -377,10 +378,6 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        let _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { (timer) in
-            self.makeEnemy()
-        }
-        
         let walkUpFrames = [playerWalkUpOne, playerWalkUpOne, playerWalkUpTwo, playerWalkUpThree, playerWalkUpThree, playerWalkUpFour]
         let walkRightFrames = [playerWalkRightOne, playerWalkRightOne, playerWalkRightTwo, playerWalkRightThree, playerWalkRightThree, playerWalkRightFour]
         let walkLeftFrames = [playerWalkLeftOne, playerWalkLeftOne, playerWalkLeftTwo, playerWalkLeftThree, playerWalkLeftThree, playerWalkLeftFour]
@@ -452,7 +449,7 @@ class GameScene: SKScene {
         let tileTexture4 = SKTexture(imageNamed: "Staircase")
         
         let bgDefinition1 = SKTileDefinition(texture: tileTexture1, size: tileTexture1.size())
-        let bgGroup1 = SKTileGroup(tileDefinition: bgDefinition1)
+        bgGroup1 = SKTileGroup(tileDefinition: bgDefinition1)
         
         let bgDefinition2 = SKTileDefinition(texture: tileTexture2, size: tileTexture2.size())
         let bgGroup2 = SKTileGroup(tileDefinition: bgDefinition2)
@@ -475,7 +472,7 @@ class GameScene: SKScene {
         bgNode.lightingBitMask = 1
         bgNodeRoof.lightingBitMask = 1
         
-        print(floor)
+        
         
         for row in floor {
             for column in row {
@@ -697,7 +694,7 @@ class GameScene: SKScene {
                         case 4:
                             bgNode.setTileGroup(bgGroup3, forColumn: columnNo, row: rowNo)
                             spawnChest(spawnPoint: bgNode.centerOfTile(atColumn: columnNo, row: rowNo))
-                            print("chest spawned")
+                            
                         case 5:
                             bgNode.setTileGroup(bgGroup4, forColumn: columnNo, row: rowNo)
                         case 2:
@@ -759,10 +756,6 @@ class GameScene: SKScene {
     
     func playerMove(label: String) {
         
-        let _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { (timer) in
-            self.enemyMove()
-        }
-        
         if isMoving == false {
             
             switch label {
@@ -781,6 +774,7 @@ class GameScene: SKScene {
                 }
                 
                 //Only move if the tile you're moving to is dirt
+                print(bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow))
                 if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 1) == bgGroup3 {
                     
                     playerPositionRow += 1
@@ -793,6 +787,7 @@ class GameScene: SKScene {
                         self.isMoving = false
                     }
                     player.run(moveAction)
+                    print("move")
                 }
                 
             case "ArrowRight":
@@ -990,114 +985,12 @@ class GameScene: SKScene {
     
     var enemyArray = [SKSpriteNode]()
     
-    func makeEnemy() {
-        
-        let skeletonTextureOne = SKTexture(imageNamed: "SkeletonOne")
-        let skeletonTextureTwo = SKTexture(imageNamed: "SkeletonTwo")
-        let skeletonTextureThree = SKTexture(imageNamed: "SkeletonThree")
-        let skeletonTextureFour = SKTexture(imageNamed: "SkeletonFour")
-        let skeletonTextureFive = SKTexture(imageNamed: "SkeletonFive")
-        
-        let skeleton = SKSpriteNode()
-        
-        skeleton.texture = skeletonTextureOne
-        skeleton.size = skeletonTextureOne.size()
-        skeleton.position = bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow + 2)
-        skeleton.zPosition = 35
-        skeleton.lightingBitMask = 1
-        
-        skeletonFrames = [skeletonTextureOne, skeletonTextureTwo, skeletonTextureThree, skeletonTextureFour, skeletonTextureFive]
-        
-        skeletonAnimation = SKAction.animate(with: skeletonFrames, timePerFrame: 0.1)
-        
-        let skeletonLight = SKLightNode()
-        skeletonLight.lightColor = UIColor.purple
-        skeletonLight.falloff = 2
-        skeletonLight.shadowColor = UIColor.clear
-        skeletonLight.zPosition = 36
-        skeleton.addChild(skeletonLight)
-        
-        self.addChild(skeleton)
-        
-        animateSkeleton(node: skeleton)
-        
-        enemyArray.append(skeleton)
-    }
-    
-    var randomEnemyPosition : Int!
-    
-    //Move 2 tiles away from the player
-    var enemyPositionUpTwo : SKAction!
-    var enemyPositionRightTwo : SKAction!
-    var enemyPositionDownTwo : SKAction!
-    var enemyPositionLeftTwo : SKAction!
-    
-    //Move 1 tile away from the player
-    var enemyPositionUpOne : SKAction!
-    var enemyPositionRightOne : SKAction!
-    var enemyPositionDownOne : SKAction!
-    var enemyPositionLeftOne : SKAction!
-    
-    func enemyMove() {
-        
-        enemyPositionUpTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow + 2), duration: 0.5)
-        enemyPositionRightTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn + 2, row: playerPositionRow), duration: 0.5)
-        enemyPositionDownTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow - 2), duration: 0.5)
-        enemyPositionLeftTwo = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn - 2, row: playerPositionRow), duration: 0.5)
-        
-        enemyPositionUpOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow + 1), duration: 0.5)
-        enemyPositionRightOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn + 1, row: playerPositionRow), duration: 0.5)
-        enemyPositionDownOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow - 1), duration: 0.5)
-        enemyPositionLeftOne = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn - 1, row: playerPositionRow), duration: 0.5)
-        
-        for i in enemyArray {
-            randomEnemyPosition = Int(arc4random_uniform(4))
-            
-            switch randomEnemyPosition {
-                
-            case 0:
-                if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 2) == bgGroup3 && i.position.y >= player.position.y {
-                    i.run(enemyPositionUpTwo)
-                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 2) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 1) == bgGroup3 && i.position.y >= player.position.y {
-                    i.run(enemyPositionUpOne)
-                } else {
-                    enemyMove()
-                }
-            case 1:
-                if bgNode.tileGroup(atColumn: playerPositionColumn + 2, row: playerPositionRow) == bgGroup3 && i.position.x >= player.position.x {
-                    i.run(enemyPositionRightTwo)
-                } else if bgNode.tileGroup(atColumn: playerPositionColumn + 2, row: playerPositionRow) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn + 1, row: playerPositionRow) == bgGroup3 && i.position.x >= player.position.x {
-                    i.run(enemyPositionRightOne)
-                } else {
-                    enemyMove()
-                }
-            case 2:
-                if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 2) == bgGroup3 && i.position.y <= player.position.y {
-                    i.run(enemyPositionDownTwo)
-                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 2) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 1) == bgGroup3 && i.position.y <= player.position.y {
-                    i.run(enemyPositionDownOne)
-                } else {
-                    enemyMove()
-                }
-            case 3:
-                if bgNode.tileGroup(atColumn: playerPositionColumn - 2, row: playerPositionRow) == bgGroup3 && i.position.x <= player.position.x {
-                    i.run(enemyPositionLeftTwo)
-                } else if bgNode.tileGroup(atColumn: playerPositionColumn - 2, row: playerPositionRow) != bgGroup3 && bgNode.tileGroup(atColumn: playerPositionColumn - 1, row: playerPositionRow) == bgGroup3 && i.position.x <= player.position.x {
-                    i.run(enemyPositionLeftOne)
-                } else {
-                    enemyMove()
-                }
-            default:
-                break
-                
-            }
-        }
-    }
-    
     // Room regeneration
     
     func regenerate() {
-        // clear both tilemaps (bgnode and bgnode roof)
+        // clear both tilemaps (bgnode and bgnode roof) *maybe not needed*
+        
+        print("\(playerPositionColumn), \(playerPositionRow)")
         
         floor = [
             [0,0,0,0,0,0,0],
@@ -1109,24 +1002,19 @@ class GameScene: SKScene {
             [0,0,0,0,0,0,0]
         ]
         
-        currentFloor += 1
+        bgNode.fill(with: bgGroup1)
         
-        //overallControl()
-        //setupMap()
-        //makeEnemy()
-        //updateCamera()
-        //animateDown()
-    }
-    
-    func animateSkeleton(node: SKSpriteNode) {
-        if skeletonAnimating == true {
-            
-            node.run(skeletonAnimation)
-            
-            let _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
-                self.animateSkeleton(node: node)
-            }
-        }
+        //currentFloor += 1
+        playerPositionColumn = 24
+        playerPositionRow = 24
+        
+        overallControl()
+        setupMap()
+        updateCamera()
+        animateDown()
+        
+        print("\(playerPositionColumn), \(playerPositionRow)")
+        
     }
     
     //Functions for making the camera follow the player
