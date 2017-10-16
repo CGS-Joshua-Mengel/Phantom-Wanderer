@@ -167,6 +167,7 @@ class GameScene: SKScene {
     
     //Places an exit in a random room on the map, provided said room is not the centre.
     func placeStairs() {
+        print("stairs")
         var hasPlaced = false
         var stairPosX = 0
         var stairPosY = 0
@@ -185,6 +186,7 @@ class GameScene: SKScene {
     //Places loot on the map based on the amountOfLoot Variable. Does not place in the middle.
     //Also will not place upon the stairs or other loot positions.
     func placeLoot() {
+        print("loot")
         
         //The amount of chests on each floor, based off of the current floor maximum range divided by 5, rounded down.
         let amountOfLoot = rangeMax/5
@@ -389,7 +391,7 @@ class GameScene: SKScene {
         walkDownAnimation = SKAction.animate(with: walkDownFrames, timePerFrame: 0.25)
         walkLeftAnimation = SKAction.animate(with: walkLeftFrames, timePerFrame: 0.25)
         
-        makeFloor(y: 3, x: 3, prev:"start")
+        overallControl()
         
         player = self.childNode(withName: "player") as? SKSpriteNode
         
