@@ -259,9 +259,6 @@ class GameScene: SKScene {
     
     var randomRoomDecider: Int!
     
-    var bgGroup3: SKTileGroup!
-    var bgGroup1: SKTileGroup!
-    
     var isMoving = false
     
     var bgNode = SKTileMapNode()
@@ -441,26 +438,50 @@ class GameScene: SKScene {
     
     //Function for placing the map
     
+    var tileTexture1 : SKTexture!
+    var tileTexture2 : SKTexture!
+    var tileTexture3 : SKTexture!
+    var tileTexture4 : SKTexture!
+    var tileTexture5 : SKTexture!
+    
+    var bgDefinition1 : SKTileDefinition!
+    var bgDefinition2 : SKTileDefinition!
+    var bgDefinition3 : SKTileDefinition!
+    var bgDefinition4 : SKTileDefinition!
+    var bgDefinition5 : SKTileDefinition!
+    
+    var bgGroup1 : SKTileGroup!
+    var bgGroup2 : SKTileGroup!
+    var bgGroup3 : SKTileGroup!
+    var bgGroup4 : SKTileGroup!
+    var bgGroup5 : SKTileGroup!
+    
+    var tileSet : SKTileSet!
+    
     func setupMap() {
         
-        let tileTexture1 = SKTexture(imageNamed: "Roof")
-        let tileTexture2 = SKTexture(imageNamed: "Wall")
-        let tileTexture3 = SKTexture(imageNamed: "Floor")
-        let tileTexture4 = SKTexture(imageNamed: "Staircase")
+        tileTexture1 = SKTexture(imageNamed: "Roof")
+        tileTexture2 = SKTexture(imageNamed: "Wall")
+        tileTexture3 = SKTexture(imageNamed: "Floor")
+        tileTexture4 = SKTexture(imageNamed: "Staircase")
+        tileTexture5 = SKTexture(imageNamed: "BlankTile")
         
-        let bgDefinition1 = SKTileDefinition(texture: tileTexture1, size: tileTexture1.size())
+        bgDefinition1 = SKTileDefinition(texture: tileTexture1, size: tileTexture1.size())
         bgGroup1 = SKTileGroup(tileDefinition: bgDefinition1)
         
-        let bgDefinition2 = SKTileDefinition(texture: tileTexture2, size: tileTexture2.size())
-        let bgGroup2 = SKTileGroup(tileDefinition: bgDefinition2)
+        bgDefinition2 = SKTileDefinition(texture: tileTexture2, size: tileTexture2.size())
+        bgGroup2 = SKTileGroup(tileDefinition: bgDefinition2)
         
-        let bgDefinition3 = SKTileDefinition(texture: tileTexture3, size: tileTexture3.size())
+        bgDefinition3 = SKTileDefinition(texture: tileTexture3, size: tileTexture3.size())
         bgGroup3 = SKTileGroup(tileDefinition: bgDefinition3)
         
-        let bgDefinition4 = SKTileDefinition(texture: tileTexture4, size: tileTexture4.size())
-        let bgGroup4 = SKTileGroup(tileDefinition: bgDefinition4)
+        bgDefinition4 = SKTileDefinition(texture: tileTexture4, size: tileTexture4.size())
+        bgGroup4 = SKTileGroup(tileDefinition: bgDefinition4)
         
-        let tileSet = SKTileSet(tileGroups: [bgGroup1, bgGroup2, bgGroup3, bgGroup4])
+        bgDefinition5 = SKTileDefinition(texture: tileTexture5, size: tileTexture5.size())
+        bgGroup5 = SKTileGroup(tileDefinition: bgDefinition5)
+        
+        tileSet = SKTileSet(tileGroups: [bgGroup1, bgGroup2, bgGroup3, bgGroup4, bgGroup5])
         bgNode = SKTileMapNode(tileSet: tileSet, columns: 49, rows: 49, tileSize: tileTexture1.size())
         bgNode.position = CGPoint(x: 0, y: 0)
         bgNode.setScale(1)
@@ -691,14 +712,13 @@ class GameScene: SKScene {
                         switch j {
                         case 0:
                             bgNode.setTileGroup(bgGroup3, forColumn: columnNo, row: rowNo)
+                        case 2:
+                            bgNode.setTileGroup(bgGroup2, forColumn: columnNo, row: rowNo)
                         case 4:
                             bgNode.setTileGroup(bgGroup3, forColumn: columnNo, row: rowNo)
                             spawnChest(spawnPoint: bgNode.centerOfTile(atColumn: columnNo, row: rowNo))
-                            
                         case 5:
                             bgNode.setTileGroup(bgGroup4, forColumn: columnNo, row: rowNo)
-                        case 2:
-                            bgNode.setTileGroup(bgGroup2, forColumn: columnNo, row: rowNo)
                         default:
                             break
                         }
@@ -774,7 +794,6 @@ class GameScene: SKScene {
                 }
                 
                 //Only move if the tile you're moving to is dirt
-                print(bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow))
                 if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 1) == bgGroup3 {
                     
                     playerPositionRow += 1
@@ -1002,11 +1021,17 @@ class GameScene: SKScene {
             [0,0,0,0,0,0,0]
         ]
         
-        bgNode.fill(with: bgGroup1)
+        //bgNode.fill(with: bgGroup1)
         
         //currentFloor += 1
         playerPositionColumn = 24
         playerPositionRow = 24
+        
+        columnNo = 0
+        rowNo = 48
+        
+        roofColumnNo = 0
+        roofRowNo = 48
         
         overallControl()
         setupMap()
