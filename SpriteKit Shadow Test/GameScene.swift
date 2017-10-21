@@ -273,9 +273,10 @@ class GameScene: SKScene {
     var roofColumnNo = 0
     var roofRowNo = 48
     
-    let playerSpeed: CGFloat = 150.0
-    
-    var player: SKSpriteNode!
+    let player = SKSpriteNode()
+    let playerTexture = SKTexture(imageNamed: "PlayerDownOne")
+    let playerLight = SKLightNode()
+    let playerCamera = SKCameraNode()
     
     var lastTouch: CGPoint? = nil
     
@@ -386,8 +387,6 @@ class GameScene: SKScene {
         walkLeftAnimation = SKAction.animate(with: walkLeftFrames, timePerFrame: 0.25)
         
         overallControl()
-        
-        player = self.childNode(withName: "player") as? SKSpriteNode
         
         setupMap()
         updateCamera()
@@ -758,9 +757,21 @@ class GameScene: SKScene {
         bgNode.zPosition = 10
         bgNodeRoof.zPosition = 30
         
+        player.texture = playerTexture
+        player.size = playerTexture.size()
         player.zPosition = 20
-        
+        self.addChild(player)
         player.position = bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow)
+        
+        playerLight.lightColor = UIColor.orange
+        playerLight.falloff = 1.5
+        playerLight.categoryBitMask = 1
+        playerLight.shadowColor = UIColor.clear
+        player.addChild(playerLight)
+        
+        self.camera = playerCamera
+        
+        self.addChild(playerCamera)
     }
     
     
@@ -1045,8 +1056,8 @@ class GameScene: SKScene {
     //Functions for making the camera follow the player
     
     func updateCamera() {
-        if let camera = camera {
-            camera.position = CGPoint(x: player.position.x, y: player.position.y)
+        if let playerCamera = camera {
+            playerCamera.position = CGPoint(x: player.position.x, y: player.position.y)
         }
     }
     
