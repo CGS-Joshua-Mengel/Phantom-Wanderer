@@ -314,6 +314,30 @@ class GameScene: SKScene {
     var walkDownAnimation: SKAction!
     var walkLeftAnimation: SKAction!
     
+    let blackOutCurtain = SKSpriteNode()
+    
+    func createBlackout() {
+        
+        blackOutCurtain.size = CGSize(width: 2000, height: 2000)
+        blackOutCurtain.color = UIColor.black
+        blackOutCurtain.zPosition = 40
+        
+        self.addChild(blackOutCurtain)
+        
+    }
+    
+    let zoomOutAction = SKAction.scale(to: 0.75, duration: 2)
+    let zoomInAction = SKAction.scale(to: 0.5, duration: 2)
+    
+    let fadeOutAction = SKAction.fadeOut(withDuration: 2)
+    func fadeOut() {
+        blackOutCurtain.run(fadeInAction)
+    }
+    let fadeInAction = SKAction.fadeIn(withDuration: 2)
+    func fadeIn() {
+        blackOutCurtain.run(fadeOutAction)
+    }
+    
     var roomToPlace = [
         [0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0],
@@ -391,6 +415,12 @@ class GameScene: SKScene {
         setupMap()
         updateCamera()
         animateDown()
+        
+        createBlackout()
+        
+        fadeIn()
+        
+        playerCamera.run(zoomInAction)
     }
     
     func spawnChest(spawnPoint: CGPoint) {
@@ -772,7 +802,9 @@ class GameScene: SKScene {
         self.camera = playerCamera
         
         self.addChild(playerCamera)
+    
     }
+    
     
     
     //Floor z = 10
@@ -818,6 +850,34 @@ class GameScene: SKScene {
                     }
                     player.run(moveAction)
                     print("move")
+                    
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 1) == bgGroup4 {
+                    
+                    playerPositionRow += 1
+                    
+                    moveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow), duration: 0.3)
+                    
+                    isMoving = true
+                    
+                    player.run(moveAction)
+                    
+                    let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
+                        if self.facingDown != true {
+                            
+                            self.facingUp = false
+                            self.facingRight = false
+                            self.facingDown = true
+                            self.facingLeft = false
+                            
+                            self.animateDown()
+                        }
+                        self.playerCamera.run(self.zoomOutAction)
+                        self.fadeOut()
+                        let _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+                            self.regenerate()
+                        }
+                    }
+                    
                 }
                 
             case "ArrowRight":
@@ -844,6 +904,34 @@ class GameScene: SKScene {
                         self.isMoving = false
                     }
                     player.run(moveAction)
+                    
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn + 1, row: playerPositionRow) == bgGroup4 {
+                    
+                    playerPositionColumn += 1
+                    
+                    moveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow), duration: 0.3)
+                    
+                    isMoving = true
+                    
+                    player.run(moveAction)
+                    
+                    let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
+                        if self.facingDown != true {
+                            
+                            self.facingUp = false
+                            self.facingRight = false
+                            self.facingDown = true
+                            self.facingLeft = false
+                            
+                            self.animateDown()
+                        }
+                        self.playerCamera.run(self.zoomOutAction)
+                        self.fadeOut()
+                        let _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+                            self.regenerate()
+                        }
+                    }
+                    
                 }
                 
             case "ArrowDown":
@@ -870,6 +958,34 @@ class GameScene: SKScene {
                         self.isMoving = false
                     }
                     player.run(moveAction)
+                    
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 1) == bgGroup4 {
+                    
+                    playerPositionRow -= 1
+                    
+                    moveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow), duration: 0.3)
+                    
+                    isMoving = true
+                    
+                    player.run(moveAction)
+                    
+                    let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
+                        if self.facingDown != true {
+                            
+                            self.facingUp = false
+                            self.facingRight = false
+                            self.facingDown = true
+                            self.facingLeft = false
+                            
+                            self.animateDown()
+                        }
+                        self.playerCamera.run(self.zoomOutAction)
+                        self.fadeOut()
+                        let _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+                            self.regenerate()
+                        }
+                    }
+                    
                 }
                 
             case "ArrowLeft":
@@ -895,7 +1011,36 @@ class GameScene: SKScene {
                         self.isMoving = false
                     }
                     player.run(moveAction)
+                    
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn - 1, row: playerPositionRow) == bgGroup4 {
+                    
+                    playerPositionColumn -= 1
+                    
+                    moveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: playerPositionColumn, row: playerPositionRow), duration: 0.3)
+                    
+                    isMoving = true
+                    
+                    player.run(moveAction)
+                    
+                    let _ = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (timer) in
+                        if self.facingDown != true {
+                            
+                            self.facingUp = false
+                            self.facingRight = false
+                            self.facingDown = true
+                            self.facingLeft = false
+                            
+                            self.animateDown()
+                        }
+                        self.playerCamera.run(self.zoomOutAction)
+                        self.fadeOut()
+                        let _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+                            self.regenerate()
+                        }
+                    }
+                    
                 }
+                
             default:
                 break
             }
@@ -1019,6 +1164,8 @@ class GameScene: SKScene {
     
     func regenerate() {
         // clear both tilemaps (bgnode and bgnode roof) *maybe not needed*
+        self.removeAllChildren()
+        player.removeAllChildren()
         
         print("\(playerPositionColumn), \(playerPositionRow)")
         
@@ -1049,7 +1196,16 @@ class GameScene: SKScene {
         updateCamera()
         animateDown()
         
-        print("\(playerPositionColumn), \(playerPositionRow)")
+        //self.run(fadeInAction)
+        playerCamera.run(zoomInAction)
+        
+        createBlackout()
+        fadeIn()
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
+            self.isMoving = false
+        }
+        
         
     }
     

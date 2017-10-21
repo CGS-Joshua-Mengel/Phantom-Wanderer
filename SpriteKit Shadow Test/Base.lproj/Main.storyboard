@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +30,7 @@
                                         <accessibility key="accessibilityConfiguration" label="UpArrow"/>
                                         <state key="normal" title="ArrowUp" image="ArrowUp"/>
                                         <connections>
-                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="6Tb-YV-WQN"/>
+                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="Vjh-w9-rlH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1x-Zi-x4g">
@@ -39,7 +39,7 @@
                                         <accessibility key="accessibilityConfiguration" label="RightArrow"/>
                                         <state key="normal" title="ArrowRight" image="ArrowRight"/>
                                         <connections>
-                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="4G4-LF-Sih"/>
+                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="miL-Sj-J3D"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UIO-9S-cIS">
@@ -48,7 +48,7 @@
                                         <accessibility key="accessibilityConfiguration" label="DownArrow"/>
                                         <state key="normal" title="ArrowDown" image="ArrowDown"/>
                                         <connections>
-                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="FgT-Up-iHz"/>
+                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="XI4-9Q-MZl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiL-h1-4NN">
@@ -57,7 +57,7 @@
                                         <accessibility key="accessibilityConfiguration" label="LeftArrow"/>
                                         <state key="normal" title="ArrowLeft" image="ArrowLeft"/>
                                         <connections>
-                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="uYS-ix-zaJ"/>
+                                            <action selector="playerMovementWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="h0f-Cc-eXW"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -78,7 +78,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="AttackLeft" image="AmmoArrowLeft"/>
                                         <connections>
-                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sHR-I1-J7X"/>
+                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="mOR-ES-AiI"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMs-Ea-4KY">
@@ -86,7 +86,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="AttackDown" image="AmmoArrowDown"/>
                                         <connections>
-                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WDO-J0-y1k"/>
+                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="MDN-pE-HGC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c48-fO-Vgj">
@@ -94,7 +94,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="AttackRight" image="AmmoArrowRight"/>
                                         <connections>
-                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="hkS-ks-FSe"/>
+                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="LgT-9b-EgD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2s-85-cFF">
@@ -102,7 +102,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="AttackUp" image="AmmoArrowUp"/>
                                         <connections>
-                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="usT-PZ-KA2"/>
+                                            <action selector="playerAttackingWithSender:" destination="BV1-FR-VrT" eventType="touchDown" id="fKg-l6-roU"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -111,14 +111,6 @@
                                     <constraint firstAttribute="width" constant="172" id="dB5-u9-owR"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J45-6T-Onj">
-                                <rect key="frame" x="297" y="28" width="79" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Regenerate"/>
-                                <connections>
-                                    <action selector="regenerate:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Oqs-bj-5z7"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
