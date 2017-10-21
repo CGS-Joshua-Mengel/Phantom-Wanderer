@@ -19,9 +19,36 @@ class GameViewController: UIViewController {
     var firingDirection: String!
     
     var myScene: GameScene!
+    
+    @IBOutlet var overallView: SKView!
+    
+    @IBOutlet weak var gamePausedLabel: UILabel!
+    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var titleButton: UIButton!
+    
+    @IBOutlet weak var attackLeft: UIButton!
+    @IBOutlet weak var attackDown: UIButton!
+    @IBOutlet weak var attackRight: UIButton!
+    @IBOutlet weak var attackUp: UIButton!
+    
+    @IBOutlet weak var arrowUp: UIButton!
+    @IBOutlet weak var arrowRight: UIButton!
+    @IBOutlet weak var arrowDown: UIButton!
+    @IBOutlet weak var arrowLeft: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // hides button when view loads
+        continueButton.isHidden = true
+        titleButton.isHidden = true
+        
+        // disables button when view loads
+        continueButton.isEnabled = false
+        titleButton.isEnabled = false
+        
+        gamePausedLabel.isHidden = true
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -46,6 +73,54 @@ class GameViewController: UIViewController {
     override var shouldAutorotate: Bool {
         return true
     }
+    
+    @IBAction func pause(_ sender: Any) {
+        
+        overallView.isPaused = true
+        //overallView.tintColor = UIColor.darkGray
+        
+        gamePausedLabel.isHidden = false
+        continueButton.isHidden = false
+        titleButton.isHidden = false
+        
+        continueButton.isEnabled = true
+        titleButton.isEnabled = true
+        
+        attackUp.isEnabled = false
+        attackDown.isEnabled = false
+        attackLeft.isEnabled = false
+        attackRight.isEnabled = false
+        
+        arrowUp.isEnabled = false
+        arrowDown.isEnabled = false
+        arrowLeft.isEnabled = false
+        arrowRight.isEnabled = false
+    }
+    
+    @IBAction func continueAgain(_ sender: Any) {
+        
+        overallView.isPaused = false
+        //overallView.tintColor = UIColor.clear
+        
+        gamePausedLabel.isHidden = true
+        continueButton.isHidden = true
+        titleButton.isHidden = true
+        
+        continueButton.isEnabled = false
+        titleButton.isEnabled = false
+        
+        attackUp.isEnabled = true
+        attackDown.isEnabled = true
+        attackLeft.isEnabled = true
+        attackRight.isEnabled = true
+        
+        arrowUp.isEnabled = true
+        arrowDown.isEnabled = true
+        arrowLeft.isEnabled = true
+        arrowRight.isEnabled = true
+    }
+    
+    
     
     @IBAction func playerMovement(sender: UIButton) {
         
