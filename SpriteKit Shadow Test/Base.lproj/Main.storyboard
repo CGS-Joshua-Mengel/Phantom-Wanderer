@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -112,28 +111,32 @@
                                     <constraint firstAttribute="width" constant="172" id="dB5-u9-owR"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-pR-Saf">
-                                <rect key="frame" x="156.5" y="318.5" width="62" height="30"/>
-                                <state key="normal" title="Continue"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVf-pR-Saf">
+                                <rect key="frame" x="75" y="320.5" width="225" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="QAJ-a5-EYd"/>
+                                    <constraint firstAttribute="width" constant="225" id="Xe0-oX-NBO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                <state key="normal" title="Continue" image="Continue"/>
                                 <connections>
                                     <action selector="continueAgain:" destination="BV1-FR-VrT" eventType="touchUpInside" id="vkG-9w-mae"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apz-vk-S78">
-                                <rect key="frame" x="147" y="356" width="81" height="30"/>
-                                <state key="normal" title="Title screen"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apz-vk-S78">
+                                <rect key="frame" x="75" y="355.5" width="225" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="225" id="AsO-aq-y0k"/>
+                                    <constraint firstAttribute="height" constant="27" id="vVa-mT-KG0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Title screen" image="Title Screen"/>
                                 <connections>
                                     <segue destination="KhH-tO-DpV" kind="show" animates="NO" id="dPp-vE-4Go"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Paused" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phi-Vm-1rc">
-                                <rect key="frame" x="134" y="289" width="106" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKT-8p-bEQ">
-                                <rect key="frame" x="344" y="25" width="20" height="36"/>
+                                <rect key="frame" x="350" y="25" width="20" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="HRX-k7-zl6"/>
                                     <constraint firstAttribute="height" constant="36" id="aaT-AQ-niw"/>
@@ -143,21 +146,28 @@
                                     <action selector="pause:" destination="BV1-FR-VrT" eventType="touchUpInside" id="89O-Kb-5Wy"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Game Paused" translatesAutoresizingMaskIntoConstraints="NO" id="Y1l-Xr-1sV">
+                                <rect key="frame" x="75" y="285.5" width="225" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="Blb-Xv-a01"/>
+                                    <constraint firstAttribute="width" constant="225" id="se6-N3-aqu"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="oY8-J4-ENZ" secondAttribute="bottom" id="1m6-sV-Ybw"/>
-                            <constraint firstItem="yKT-8p-bEQ" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="5" id="33M-rQ-WV0"/>
-                            <constraint firstItem="NVf-pR-Saf" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="HlQ-9E-rO1"/>
+                            <constraint firstItem="NVf-pR-Saf" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="7kG-fw-Hhb"/>
                             <constraint firstItem="oY8-J4-ENZ" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="KRV-cJ-fqz"/>
-                            <constraint firstItem="NVf-pR-Saf" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="U5Y-eO-r4y"/>
-                            <constraint firstItem="apz-vk-S78" firstAttribute="top" secondItem="NVf-pR-Saf" secondAttribute="bottom" constant="8" id="U6w-AJ-DcG"/>
+                            <constraint firstItem="apz-vk-S78" firstAttribute="top" secondItem="NVf-pR-Saf" secondAttribute="bottom" constant="8" id="L29-jZ-z0r"/>
+                            <constraint firstAttribute="trailing" secondItem="yKT-8p-bEQ" secondAttribute="trailing" constant="5" id="RHr-aT-lGh"/>
                             <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="HZv-Rl-8Yz" secondAttribute="bottom" id="hS0-kD-tY5"/>
-                            <constraint firstItem="apz-vk-S78" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="k7A-xD-m1j"/>
                             <constraint firstAttribute="trailing" secondItem="HZv-Rl-8Yz" secondAttribute="trailing" id="kda-UC-tXa"/>
-                            <constraint firstItem="NVf-pR-Saf" firstAttribute="top" secondItem="Phi-Vm-1rc" secondAttribute="bottom" constant="8" id="sRB-TN-Ln2"/>
-                            <constraint firstItem="yKT-8p-bEQ" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailingMargin" constant="5" id="swX-L8-QMh"/>
-                            <constraint firstItem="Phi-Vm-1rc" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="vuO-uR-iBL"/>
+                            <constraint firstItem="Y1l-Xr-1sV" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="oI9-GC-hXt"/>
+                            <constraint firstItem="yKT-8p-bEQ" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="5" id="sbI-KI-8ZN"/>
+                            <constraint firstItem="apz-vk-S78" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="vS2-Kb-EWt"/>
+                            <constraint firstItem="NVf-pR-Saf" firstAttribute="top" secondItem="Y1l-Xr-1sV" secondAttribute="bottom" constant="8" id="xUY-7p-mTA"/>
+                            <constraint firstItem="NVf-pR-Saf" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="zKM-h2-zfi"/>
                         </constraints>
                     </view>
                     <connections>
@@ -170,7 +180,7 @@
                         <outlet property="attackRight" destination="c48-fO-Vgj" id="Oro-eZ-PeI"/>
                         <outlet property="attackUp" destination="D2s-85-cFF" id="PJa-Gt-AkP"/>
                         <outlet property="continueButton" destination="NVf-pR-Saf" id="qAk-N4-k41"/>
-                        <outlet property="gamePausedLabel" destination="Phi-Vm-1rc" id="MyL-RH-rsu"/>
+                        <outlet property="gamePausedImage" destination="Y1l-Xr-1sV" id="9FU-xn-xep"/>
                         <outlet property="overallView" destination="3se-qz-xqx" id="1DK-8N-xEh"/>
                         <outlet property="titleButton" destination="apz-vk-S78" id="C2I-JS-IsK"/>
                     </connections>
@@ -233,6 +243,9 @@
         <image name="ArrowLeft" width="42" height="42"/>
         <image name="ArrowRight" width="42" height="42"/>
         <image name="ArrowUp" width="42" height="42"/>
+        <image name="Continue" width="225" height="27"/>
+        <image name="Game Paused" width="225" height="27"/>
         <image name="Pause" width="20" height="36"/>
+        <image name="Title Screen" width="225" height="27"/>
     </resources>
 </document>

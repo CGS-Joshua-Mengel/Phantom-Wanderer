@@ -23,7 +23,8 @@ class GameViewController: UIViewController {
     
     @IBOutlet var overallView: SKView!
     
-    @IBOutlet weak var gamePausedLabel: UILabel!
+    
+    @IBOutlet weak var gamePausedImage: UIImageView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var titleButton: UIButton!
     
@@ -50,7 +51,7 @@ class GameViewController: UIViewController {
         continueButton.isEnabled = false
         titleButton.isEnabled = false
         
-        gamePausedLabel.isHidden = true
+        gamePausedImage.isHidden = true
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
@@ -81,7 +82,7 @@ class GameViewController: UIViewController {
         overallView.isPaused = true
         //overallView.tintColor = UIColor.darkGray
         
-        gamePausedLabel.isHidden = false
+        gamePausedImage.isHidden = false
         continueButton.isHidden = false
         titleButton.isHidden = false
         
@@ -104,7 +105,7 @@ class GameViewController: UIViewController {
         overallView.isPaused = false
         //overallView.tintColor = UIColor.clear
         
-        gamePausedLabel.isHidden = true
+        gamePausedImage.isHidden = true
         continueButton.isHidden = true
         titleButton.isHidden = true
         
