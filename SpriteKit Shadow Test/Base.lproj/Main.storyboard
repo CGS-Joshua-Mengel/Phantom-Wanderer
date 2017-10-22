@@ -12,7 +12,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="SpriteKit_Shadow_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Phantom_Wanderer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
@@ -170,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
-        <!--View Controller-->
+        <!--Title View Controller-->
         <scene sceneID="JOb-LP-LRz">
             <objects>
-                <viewController id="KhH-tO-DpV" sceneMemberID="viewController">
+                <viewController id="KhH-tO-DpV" customClass="titleViewController" customModule="Phantom_Wanderer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RBj-jV-v5v"/>
                         <viewControllerLayoutGuide type="bottom" id="ma2-AM-JAe"/>
@@ -194,6 +194,9 @@
                                 <rect key="frame" x="146" y="387" width="82" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="High scores"/>
+                                <connections>
+                                    <action selector="openHighScore:" destination="KhH-tO-DpV" eventType="touchUpInside" id="EaY-7H-6zN"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phantom Wanderer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txx-xW-9hd">
                                 <rect key="frame" x="113" y="60" width="148" height="21"/>

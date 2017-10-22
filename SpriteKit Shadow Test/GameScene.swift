@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameKit
 
 class GameScene: SKScene {
     //
@@ -1205,8 +1206,27 @@ class GameScene: SKScene {
         let _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
             self.isMoving = false
         }
+    }
+    
+    // when game ends
+    func gameOver() {
+        let score = 10
         
+        print(score)
         
+        let LEADERBOARD_ID = "BS"
+        
+        // Submit score to GC leaderboard
+        let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
+        bestScoreInt.value = Int64(score)
+        GKScore.report([bestScoreInt]) { (error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                print("Best Score submitted to your Leaderboard!")
+            }
+        }
+
     }
     
     //Functions for making the camera follow the player
