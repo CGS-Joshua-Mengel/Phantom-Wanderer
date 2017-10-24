@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="17A405" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KhH-tO-DpV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KhH-tO-DpV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -245,31 +245,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zeu-OG-Xm8">
-                                <rect key="frame" x="149" y="176" width="78" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Start Game"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zeu-OG-Xm8">
+                                <rect key="frame" x="81" y="273" width="213" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="caI-Qh-c26"/>
+                                    <constraint firstAttribute="width" constant="213" id="ydu-0h-GNR"/>
+                                </constraints>
+                                <state key="normal" title="Start Game" image="Start"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="ccr-n1-GKh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tz-lk-kZN">
-                                <rect key="frame" x="146" y="387" width="82" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="High scores"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tz-lk-kZN">
+                                <rect key="frame" x="81" y="320" width="213" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="S3d-Vw-mvY"/>
+                                    <constraint firstAttribute="width" constant="213" id="TAw-em-wcW"/>
+                                </constraints>
+                                <state key="normal" title="High scores" image="Leaderboard"/>
                                 <connections>
                                     <action selector="openHighScore:" destination="KhH-tO-DpV" eventType="touchUpInside" id="EaY-7H-6zN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phantom Wanderer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txx-xW-9hd">
-                                <rect key="frame" x="113" y="60" width="148" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="VbN-Lt-8P3">
+                                <rect key="frame" x="78" y="30" width="219" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Wny-zi-4z9"/>
+                                    <constraint firstAttribute="width" constant="219" id="iII-GM-MCh"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlM-S9-q9Z">
+                                <rect key="frame" x="81" y="367" width="213" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="213" id="H0w-qB-I4I"/>
+                                    <constraint firstAttribute="height" constant="27" id="fsI-9N-ceR"/>
+                                </constraints>
+                                <state key="normal" title="Help" image="Help"/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="0tz-lk-kZN" firstAttribute="centerY" secondItem="PB1-T3-bpl" secondAttribute="centerY" id="5Qh-GQ-VwE"/>
+                            <constraint firstItem="Zeu-OG-Xm8" firstAttribute="centerX" secondItem="PB1-T3-bpl" secondAttribute="centerX" id="6De-Dd-8dp"/>
+                            <constraint firstItem="wlM-S9-q9Z" firstAttribute="centerX" secondItem="PB1-T3-bpl" secondAttribute="centerX" id="83d-IW-Hsb"/>
+                            <constraint firstItem="VbN-Lt-8P3" firstAttribute="centerX" secondItem="PB1-T3-bpl" secondAttribute="centerX" id="9kq-Xa-tW6"/>
+                            <constraint firstItem="0tz-lk-kZN" firstAttribute="centerX" secondItem="PB1-T3-bpl" secondAttribute="centerX" id="AJD-e4-YtD"/>
+                            <constraint firstItem="0tz-lk-kZN" firstAttribute="top" secondItem="Zeu-OG-Xm8" secondAttribute="bottom" constant="20" id="LMb-x6-tqn"/>
+                            <constraint firstItem="wlM-S9-q9Z" firstAttribute="top" secondItem="0tz-lk-kZN" secondAttribute="bottom" constant="20" id="WpH-uh-GsX"/>
+                            <constraint firstItem="VbN-Lt-8P3" firstAttribute="top" secondItem="RBj-jV-v5v" secondAttribute="bottom" constant="10" id="tvq-Xq-ADm"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xe3-uj-xTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,7 +313,11 @@
         <image name="ArrowUp" width="42" height="42"/>
         <image name="Continue" width="225" height="27"/>
         <image name="Game Paused" width="225" height="27"/>
+        <image name="Help" width="216" height="27"/>
+        <image name="Leaderboard" width="216" height="27"/>
+        <image name="Logo" width="219" height="75"/>
         <image name="Pause" width="20" height="36"/>
+        <image name="Start" width="216" height="27"/>
         <image name="Title Screen" width="225" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>

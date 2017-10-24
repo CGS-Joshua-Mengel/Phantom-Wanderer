@@ -126,7 +126,7 @@
 				TargetAttributes = {
 					FF2166031F2EA8A9004626FA = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 987U5Y2NU6;
+						DevelopmentTeam = 883XS9PX67;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
@@ -302,7 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 987U5Y2NU6;
+				DEVELOPMENT_TEAM = 883XS9PX67;
 				INFOPLIST_FILE = "SpriteKit Shadow Test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -316,7 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 987U5Y2NU6;
+				DEVELOPMENT_TEAM = 883XS9PX67;
 				INFOPLIST_FILE = "SpriteKit Shadow Test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
