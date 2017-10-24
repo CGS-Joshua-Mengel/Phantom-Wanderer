@@ -21,6 +21,8 @@ class GameViewController: UIViewController {
     
     var myScene: GameScene!
     
+    var selfView: GameViewController!
+    
     @IBOutlet var overallView: SKView!
     
     
@@ -64,6 +66,7 @@ class GameViewController: UIViewController {
                 
                 myScene = scene as? GameScene
                 
+                myScene.gameViewController = self
             }
             
             view.ignoresSiblingOrder = true
@@ -123,6 +126,13 @@ class GameViewController: UIViewController {
         arrowRight.isEnabled = true
     }
     
+    @IBAction func gameover(_ sender: Any) {
+        myScene.gameOver()
+    }
+    
+    func highScore(_ score: Int) {
+        print(score)
+    }
     
     
     @IBAction func playerMovement(sender: UIButton) {

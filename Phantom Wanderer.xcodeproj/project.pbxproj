@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A908AC0B1F8EE44700D5EDD4 /* Rooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = A908AC0A1F8EE44700D5EDD4 /* Rooms.swift */; };
 		A9D2B7CC1F9C41FF00A3FA18 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D2B7CB1F9C41FF00A3FA18 /* GameKit.framework */; };
+		A9F238811F9ECD8300503ED5 /* highScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F238801F9ECD8300503ED5 /* highScoreViewController.swift */; };
 		A9F685FE1F9C45ED004E13B2 /* titleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F685FD1F9C45ED004E13B2 /* titleViewController.swift */; };
 		FF2166081F2EA8AA004626FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2166071F2EA8AA004626FA /* AppDelegate.swift */; };
 		FF21660A1F2EA8AA004626FA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FF2166091F2EA8AA004626FA /* GameScene.sks */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		A908AC0A1F8EE44700D5EDD4 /* Rooms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rooms.swift; sourceTree = "<group>"; };
 		A9D2B7CB1F9C41FF00A3FA18 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		A9F238801F9ECD8300503ED5 /* highScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = highScoreViewController.swift; sourceTree = "<group>"; };
 		A9F685FD1F9C45ED004E13B2 /* titleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = titleViewController.swift; sourceTree = "<group>"; };
 		FF2166041F2EA8AA004626FA /* Phantom Wanderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Phantom Wanderer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2166071F2EA8AA004626FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				FF21660B1F2EA8AA004626FA /* Actions.sks */,
 				FF21660D1F2EA8AA004626FA /* GameScene.swift */,
 				FF21660F1F2EA8AA004626FA /* GameViewController.swift */,
+				A9F238801F9ECD8300503ED5 /* highScoreViewController.swift */,
 				A9F685FD1F9C45ED004E13B2 /* titleViewController.swift */,
 				A908AC0A1F8EE44700D5EDD4 /* Rooms.swift */,
 				FF2166111F2EA8AA004626FA /* Main.storyboard */,
@@ -123,7 +126,7 @@
 				TargetAttributes = {
 					FF2166031F2EA8A9004626FA = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 883XS9PX67;
+						DevelopmentTeam = 987U5Y2NU6;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9F685FE1F9C45ED004E13B2 /* titleViewController.swift in Sources */,
+				A9F238811F9ECD8300503ED5 /* highScoreViewController.swift in Sources */,
 				FF21660E1F2EA8AA004626FA /* GameScene.swift in Sources */,
 				FF2166101F2EA8AA004626FA /* GameViewController.swift in Sources */,
 				A908AC0B1F8EE44700D5EDD4 /* Rooms.swift in Sources */,
@@ -298,7 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 883XS9PX67;
+				DEVELOPMENT_TEAM = 987U5Y2NU6;
 				INFOPLIST_FILE = "SpriteKit Shadow Test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -312,7 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 883XS9PX67;
+				DEVELOPMENT_TEAM = 987U5Y2NU6;
 				INFOPLIST_FILE = "SpriteKit Shadow Test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

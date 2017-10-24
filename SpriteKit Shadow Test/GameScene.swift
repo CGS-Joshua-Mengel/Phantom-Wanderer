@@ -6,6 +6,8 @@
 //  Copyright © 2017 Edan Reynolds. All rights reserved.
 //
 
+// Score = Levels complete (100 points) + Kills (5 point) + Money (Between 10 & 50)
+
 import SpriteKit
 import GameKit
 
@@ -28,6 +30,12 @@ class GameScene: SKScene {
         [0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0]
     ]
+    
+    // Scoring stuff
+    var overallScore = 0
+    
+    // Referencing parent view controller
+    var gameViewController: GameViewController! = nil
     
     //Variables for the current floor, and min/max ranges of the floor size.
     var currentFloor = 1
@@ -1165,6 +1173,10 @@ class GameScene: SKScene {
     
     func regenerate() {
         // clear both tilemaps (bgnode and bgnode roof) *maybe not needed*
+        
+        // Increases the score by 100 for going up one level
+        overallScore += 100
+        
         self.removeAllChildren()
         player.removeAllChildren()
         
@@ -1208,17 +1220,19 @@ class GameScene: SKScene {
         }
     }
     
+    
+    
     // when game ends
     func gameOver() {
-        let score = 10
+        // overallScore
         
-        print(score)
+        print(overallScore)
         
         let LEADERBOARD_ID = "BS"
         
         // Submit score to GC leaderboard
         let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
-        bestScoreInt.value = Int64(score)
+        bestScoreInt.value = Int64(overallScore)
         GKScore.report([bestScoreInt]) { (error) in
             if error != nil {
                 print(error!.localizedDescription)
@@ -1226,7 +1240,9 @@ class GameScene: SKScene {
                 print("Best Score submitted to your Leaderboard!")
             }
         }
-
+        
+        gameViewController.highScore(overallScore)
+        
     }
     
     //Functions for making the camera follow the player
