@@ -330,13 +330,11 @@ class GameScene: SKScene {
     let blackOutCurtain = SKSpriteNode()
     
     func createBlackout() {
-        
         blackOutCurtain.size = CGSize(width: 2000, height: 2000)
         blackOutCurtain.color = UIColor.black
         blackOutCurtain.zPosition = 40
         
         self.addChild(blackOutCurtain)
-        
     }
     
     var numberOfPlayerMoves = 0
@@ -554,8 +552,6 @@ class GameScene: SKScene {
         bgNode.lightingBitMask = 1
         bgNodeRoof.lightingBitMask = 1
         
-        
-        
         for row in floor {
             for column in row {
                 switch column {
@@ -762,7 +758,7 @@ class GameScene: SKScene {
                     
                     roomToPlace = allRooms.stairRoom
                     roomToPlaceRoof = allRooms.stairRoomRoof
-                
+                    
                 default:
                     roomToPlace = allRooms.void
                     roomToPlaceRoof = allRooms.voidRoof
@@ -834,7 +830,7 @@ class GameScene: SKScene {
         self.camera = playerCamera
         
         self.addChild(playerCamera)
-    
+        
     }
     
     
@@ -896,48 +892,23 @@ class GameScene: SKScene {
     var columnChecker : Int!
     var rowChecker : Int!
     
-    
-    
-    
-    
-    
-    
-    
     func findDistanceToPlayer(column: Int, row: Int) -> Int {
         
         if playerPositionColumn > column {
-            
-            
             columnChecker = playerPositionColumn - column
-            
         } else {
-            
-            
             columnChecker = column - playerPositionColumn
-            
         }
         
         if playerPositionRow > row {
-            
-            
             rowChecker = playerPositionRow - row
-            
         } else {
-            
-            
             rowChecker = row - playerPositionRow
-            
         }
-        
         return(columnChecker + rowChecker)
-        
     }
     
     var enemyMoveAction : SKAction!
-    
-    
-    
-    
     
     var bestDirectionArray = ["Empty","Empty","Empty","Empty"]
     
@@ -967,16 +938,12 @@ class GameScene: SKScene {
                     gameViewController.updatePlayerLife(playerHealth)
                     
                     if playerHealth <= 0 {
-                        
                         gameOver()
-                        
                     }
                     
                 } else {
-                    
                     bestDirectionArray.remove(at: 0)
                     moveEnemy(enemyToMove)
-                    
                 }
                 
             case "East":
@@ -1000,16 +967,12 @@ class GameScene: SKScene {
                     gameViewController.updatePlayerLife(playerHealth)
                     
                     if playerHealth <= 0 {
-                        
                         gameOver()
-                        
                     }
                     
                 } else {
-                    
                     bestDirectionArray.remove(at: 0)
                     moveEnemy(enemyToMove)
-                    
                 }
                 
             case "West":
@@ -1033,16 +996,12 @@ class GameScene: SKScene {
                     gameViewController.updatePlayerLife(playerHealth)
                     
                     if playerHealth <= 0 {
-                        
                         gameOver()
-                        
                     }
                     
                 } else {
-                    
                     bestDirectionArray.remove(at: 0)
                     moveEnemy(enemyToMove)
-                    
                 }
                 
             case "South":
@@ -1066,29 +1025,17 @@ class GameScene: SKScene {
                     gameViewController.updatePlayerLife(playerHealth)
                     
                     if playerHealth <= 0 {
-                        
                         gameOver()
-                        
                     }
-                    
                 } else {
-                    
                     bestDirectionArray.remove(at: 0)
                     moveEnemy(enemyToMove)
-                    
                 }
-                
             default:
                 break
-                
             }
         }
     }
-    
-    
-    
-    
-    
     
     var northColumn : Int!
     var northRow : Int!
@@ -1109,10 +1056,6 @@ class GameScene: SKScene {
     
     var distanceArray = [Int]()
     
-    
-    
-    
-    
     var hasIncreasedAt0 = false
     var hasIncreasedAt5 = false
     var hasIncreasedAt10 = false
@@ -1127,12 +1070,9 @@ class GameScene: SKScene {
         
         bestDirectionArray.insert("North", at: distanceArray.index(of: northDistance)!)
         
-        
         bestDirectionArray.insert("East", at: distanceArray.index(of: eastDistance)!)
         
-        
         bestDirectionArray.insert("South", at: distanceArray.index(of: southDistance)!)
-        
         
         bestDirectionArray.insert("West", at: distanceArray.index(of: westDistance)!)
         
@@ -1141,18 +1081,11 @@ class GameScene: SKScene {
         for i in bestDirectionArray {
             
             if i == "Empty" {
-                
                 bestDirectionArray.remove(at: emptyCounter)
-            
             } else {
-                
                 emptyCounter += 1
-                
             }
-            
         }
-        
-        
     }
     
     func setupEnemies() {
@@ -1200,7 +1133,6 @@ class GameScene: SKScene {
                 moveEnemy(enemy)
                 
                 enemyCounter += 1
-                
             }
         }
         
@@ -1327,15 +1259,10 @@ class GameScene: SKScene {
                         for i in 1...4 {
                             
                             if bgNode.tileGroup(atColumn: playerPositionColumn - i, row: playerPositionRow + (randomTileSpawn - 1)) == bgGroup3 {
-                                
                                 lineOfSightCheck.append(true)
-                                
                             } else {
-                                
                                 lineOfSightCheck.append(false)
-                                
                             }
-                            
                         }
                         
                         if lineOfSightCheck.contains(false) == false {
@@ -1351,75 +1278,32 @@ class GameScene: SKScene {
                             self.addChild(enemy)
                             
                             enemy.position = bgNode.centerOfTile(atColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                            
                         }
-                        
                         lineOfSightCheck.removeAll()
-                        
+                    
                     default:
                         break
-                        
                     }
-                    
                 }
-                
                 enemyCounter += 1
-                
             }
-            
         }
-        
     }
     
     func sortActiveEnemyArray() {
         
         if activeEnemyArray.contains(enemy1) == true && activeEnemyArray.contains(enemy2) == true && activeEnemyArray.contains(enemy3) == false {
-            
             activeEnemyArray = [enemy1, enemy2]
-            
         } else if activeEnemyArray.contains(enemy1) == false && activeEnemyArray.contains(enemy2) == true && activeEnemyArray.contains(enemy3) == true {
-            
             activeEnemyArray = [enemy2, enemy3]
-            
         } else if activeEnemyArray.contains(enemy1) == true && activeEnemyArray.contains(enemy2) == false && activeEnemyArray.contains(enemy3) == true {
-            
             activeEnemyArray = [enemy1, enemy3]
-            
         } else if activeEnemyArray.contains(enemy1) == true && activeEnemyArray.contains(enemy2) == true && activeEnemyArray.contains(enemy3) == true {
-            
             activeEnemyArray = [enemy1, enemy2, enemy3]
-            
         }
-        
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //Function for the player moving
-    
     func playerMove(label: String) {
         
         if isMoving == false {
@@ -1493,11 +1377,8 @@ class GameScene: SKScene {
                     if playerHealth < 5 {
                         
                         playerHealth += 1
-                        
                         gameViewController.updatePlayerLife(playerHealth)
-                        
                     }
-                    
                 }
                 
             case "ArrowRight":
@@ -1561,13 +1442,9 @@ class GameScene: SKScene {
                 } else if bgNode.tileGroup(atColumn: playerPositionColumn + 1, row: playerPositionRow) == bgGroupLoot {
                     
                     if playerHealth < 5 {
-                        
                         playerHealth += 1
-                        
                         gameViewController.updatePlayerLife(playerHealth)
-                        
                     }
-                    
                 }
                 
             case "ArrowDown":
@@ -1631,13 +1508,10 @@ class GameScene: SKScene {
                 } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 1) == bgGroupLoot {
                     
                     if playerHealth < 5 {
-                        
                         playerHealth += 1
                         
                         gameViewController.updatePlayerLife(playerHealth)
-                        
                     }
-                    
                 }
                 
             case "ArrowLeft":
@@ -1704,15 +1578,11 @@ class GameScene: SKScene {
                         playerHealth += 1
                         
                         gameViewController.updatePlayerLife(playerHealth)
-                        
                     }
-                    
                 }
-                
             default:
                 break
             }
-            
             setupEnemies()
         }
     }
@@ -1776,14 +1646,11 @@ class GameScene: SKScene {
                 enemyRemoved = false
                 
                 for i in 1...activeEnemyArray.count {
-                    
-                    
                     if enemyRemoved == false {
-                    
                         if enemyColumnArray[i-1] == playerPositionColumn && enemyRowArray[i-1] == playerPositionRow + 1 {
-                        
+                            
                             enemyRemoveIndex = i-1
-                        
+                            
                             activeEnemyArray[enemyRemoveIndex].removeFromParent()
                             activeEnemyArray.remove(at: enemyRemoveIndex)
                             
@@ -1794,7 +1661,6 @@ class GameScene: SKScene {
                             enemyRemoved = true
                             
                             sortActiveEnemyArray()
-                        
                         }
                         
                     }
@@ -1828,10 +1694,7 @@ class GameScene: SKScene {
                 enemyRemoved = false
                 
                 for i in 1...activeEnemyArray.count {
-                    
-                    
                     if enemyRemoved == false {
-                        
                         if enemyColumnArray[i-1] == playerPositionColumn + 1 && enemyRowArray[i-1] == playerPositionRow {
                             
                             enemyRemoveIndex = i-1
@@ -1846,7 +1709,6 @@ class GameScene: SKScene {
                             enemyRemoved = true
                             
                             sortActiveEnemyArray()
-                            
                         }
                         
                     }
@@ -1880,8 +1742,6 @@ class GameScene: SKScene {
                 enemyRemoved = false
                 
                 for i in 1...activeEnemyArray.count {
-                    
-                    
                     if enemyRemoved == false {
                         
                         if enemyColumnArray[i-1] == playerPositionColumn && enemyRowArray[i-1] == playerPositionRow - 1 {
@@ -1898,7 +1758,6 @@ class GameScene: SKScene {
                             enemyRemoved = true
                             
                             sortActiveEnemyArray()
-                            
                         }
                         
                     }
@@ -1932,10 +1791,7 @@ class GameScene: SKScene {
                 enemyRemoved = false
                 
                 for i in 1...activeEnemyArray.count {
-                    
-                    
                     if enemyRemoved == false {
-                        
                         if enemyColumnArray[i-1] == playerPositionColumn - 1 && enemyRowArray[i-1] == playerPositionRow {
                             
                             enemyRemoveIndex = i-1
@@ -1950,7 +1806,6 @@ class GameScene: SKScene {
                             enemyRemoved = true
                             
                             sortActiveEnemyArray()
-                            
                         }
                         
                     }
@@ -1977,7 +1832,6 @@ class GameScene: SKScene {
         self.removeAllChildren()
         player.removeAllChildren()
         
-        
         floor = [
             [0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0],
@@ -1987,7 +1841,6 @@ class GameScene: SKScene {
             [0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0]
         ]
-        
         
         currentFloor += 1
         playerPositionColumn = 24
@@ -2018,12 +1871,9 @@ class GameScene: SKScene {
         }
     }
     
-    
-    
     // when game ends
     func gameOver() {
         // overallScore
-        
         
         let LEADERBOARD_ID = "BS"
         
