@@ -13,6 +13,42 @@ import GameKit
 
 class GameViewController: UIViewController {
     
+    @IBOutlet weak var lifeDisplay: UIImageView!
+    
+    func updatePlayerLife(_ life: Int) {
+        
+        switch life {
+            
+        case 1:
+            lifeDisplay.image = UIImage(named: "HeartOne")
+            
+        case 2:
+            lifeDisplay.image = UIImage(named: "HeartTwo")
+            
+        case 3:
+            lifeDisplay.image = UIImage(named: "HeartThree")
+            
+        case 4:
+            lifeDisplay.image = UIImage(named: "HeartFour")
+            
+        case 5:
+            lifeDisplay.image = UIImage(named: "HeartFive")
+            
+        default:
+            break
+            
+        }
+        
+    }
+    
+    @IBOutlet weak var overallScoreLabel: UILabel!
+    
+    func updateOverallScore(_ score: Int) {
+        
+        overallScoreLabel.text = "Score: \(score)"
+        
+    }
+    
     var movementLabel: String!
     
     var attackLabel: String!
@@ -124,10 +160,6 @@ class GameViewController: UIViewController {
         arrowDown.isEnabled = true
         arrowLeft.isEnabled = true
         arrowRight.isEnabled = true
-    }
-    
-    @IBAction func gameover(_ sender: Any) {
-        myScene.gameOver()
     }
     
     func highScore(_ score: Int) {

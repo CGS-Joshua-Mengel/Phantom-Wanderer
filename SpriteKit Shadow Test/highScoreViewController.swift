@@ -22,7 +22,7 @@ class highScoreViewController: UIViewController {
     }
     
     func updateHighScore(scoreToUpdate: Int) {
-        print(scoreToUpdate)
+        //print(scoreToUpdate)
     }
     
 

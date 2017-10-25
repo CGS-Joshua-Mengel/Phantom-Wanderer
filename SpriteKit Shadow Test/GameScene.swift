@@ -12,6 +12,9 @@ import SpriteKit
 import GameKit
 
 class GameScene: SKScene {
+    
+    var storyBoardController: GameViewController!
+    
     //
     //      D U N G E O N   L A Y O U T   G E N E R A T I O N
     //
@@ -860,35 +863,6 @@ class GameScene: SKScene {
     var enemy3Column = 1
     var enemy3Row = 1
     
-    let enemy4 = SKSpriteNode()
-    var enemy4Column = 1
-    var enemy4Row = 1
-    
-    let enemy5 = SKSpriteNode()
-    var enemy5Column = 1
-    var enemy5Row = 1
-    
-    let enemy6 = SKSpriteNode()
-    var enemy6Column = 1
-    var enemy6Row = 1
-    
-    let enemy7 = SKSpriteNode()
-    var enemy7Column = 1
-    var enemy7Row = 1
-    
-    let enemy8 = SKSpriteNode()
-    var enemy8Column = 1
-    var enemy8Row = 1
-    
-    let enemy9 = SKSpriteNode()
-    var enemy9Column = 1
-    var enemy9Row = 1
-    
-    let enemy10 = SKSpriteNode()
-    var enemy10Column = 1
-    var enemy10Row = 1
-    
-    
     let enemyTexture = SKTexture(imageNamed: "Ducko")
     
     var enemyArray = [SKSpriteNode]()
@@ -904,7 +878,9 @@ class GameScene: SKScene {
     var enemyCounter = 0
     
     func fillEnemyArray() {
-        enemyArray = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10]
+        enemyArray = [enemy1, enemy2, enemy3]
+        enemyColumnArray = [enemy1Column, enemy2Column, enemy3Column]
+        enemyRowArray = [enemy1Row, enemy2Row, enemy3Row]
         
         for enemy in enemyArray {
             
@@ -914,8 +890,6 @@ class GameScene: SKScene {
             enemy.zPosition = 25
             
         }
-        
-        enemyArray.removeAll()
         
     }
     
@@ -969,142 +943,146 @@ class GameScene: SKScene {
     
     func moveEnemy(_ enemyToMove: SKSpriteNode) {
         
-        print(bestDirectionArray)
-        switch bestDirectionArray[0] {
-            
-        case "North":
-            if bgNode.tileGroup(atColumn: northColumn, row: northRow) == bgGroup3 {
+        if bestDirectionArray.count > 0 {
+            switch bestDirectionArray[0] {
                 
-                enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: northColumn, row: northRow), duration: 0.3)
-                
-                enemyToMove.run(enemyMoveAction)
-                
-                bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-                enemyColumnArray[enemyCounter] = northColumn
-                enemyRowArray[enemyCounter] = northRow
-                
-                bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-            } else if bgNode.tileGroup(atColumn: northColumn, row: northRow) == bgGroupPlayer {
-                
-                playerHealth -= 1
-                
-                
-                if playerHealth <= 0 {
+            case "North":
+                if bgNode.tileGroup(atColumn: northColumn, row: northRow) == bgGroup3 {
                     
-                    gameOver()
+                    enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: northColumn, row: northRow), duration: 0.3)
                     
-                }
-                
-            } else {
-                
-                bestDirectionArray.remove(at: 0)
-                moveEnemy(enemyToMove)
-                
-            }
-            
-        case "East":
-            if bgNode.tileGroup(atColumn: eastColumn, row: eastRow) == bgGroup3 {
-                
-                enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: eastColumn, row: eastRow), duration: 0.3)
-                
-                enemyToMove.run(enemyMoveAction)
-                
-                bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-                enemyColumnArray[enemyCounter] = eastColumn
-                enemyRowArray[enemyCounter] = eastRow
-                
-                bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-            } else if bgNode.tileGroup(atColumn: eastColumn, row: eastRow) == bgGroupPlayer {
-                
-                playerHealth -= 1
-                
-                
-                if playerHealth <= 0 {
+                    enemyToMove.run(enemyMoveAction)
                     
-                    gameOver()
+                    bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                    enemyColumnArray[enemyCounter] = northColumn
+                    enemyRowArray[enemyCounter] = northRow
+                    
+                    bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                } else if bgNode.tileGroup(atColumn: northColumn, row: northRow) == bgGroupPlayer {
+                    
+                    playerHealth -= 1
+                    
+                    gameViewController.updatePlayerLife(playerHealth)
+                    
+                    if playerHealth <= 0 {
+                        
+                        gameOver()
+                        
+                    }
+                    
+                } else {
+                    
+                    bestDirectionArray.remove(at: 0)
+                    moveEnemy(enemyToMove)
                     
                 }
                 
-            } else {
-                
-                bestDirectionArray.remove(at: 0)
-                moveEnemy(enemyToMove)
-                
-            }
-            
-        case "West":
-            if bgNode.tileGroup(atColumn: westColumn, row: westRow) == bgGroup3 {
-                
-                enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: westColumn, row: westRow), duration: 0.3)
-                
-                enemyToMove.run(enemyMoveAction)
-                
-                bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-                enemyColumnArray[enemyCounter] = westColumn
-                enemyRowArray[enemyCounter] = westRow
-                
-                bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-            } else if bgNode.tileGroup(atColumn: westColumn, row: westRow) == bgGroupPlayer {
-                
-                playerHealth -= 1
-                
-                
-                if playerHealth <= 0 {
+            case "East":
+                if bgNode.tileGroup(atColumn: eastColumn, row: eastRow) == bgGroup3 {
                     
-                    gameOver()
+                    enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: eastColumn, row: eastRow), duration: 0.3)
                     
-                }
-                
-            } else {
-                
-                bestDirectionArray.remove(at: 0)
-                moveEnemy(enemyToMove)
-                
-            }
-            
-        case "South":
-            if bgNode.tileGroup(atColumn: southColumn, row: southRow) == bgGroup3 {
-                
-                enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: southColumn, row: southRow), duration: 0.3)
-                
-                enemyToMove.run(enemyMoveAction)
-                
-                bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-                enemyColumnArray[enemyCounter] = southColumn
-                enemyRowArray[enemyCounter] = southRow
-                
-                bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                
-            } else if bgNode.tileGroup(atColumn: southColumn, row: southRow) == bgGroupPlayer {
-                
-                playerHealth -= 1
-                
-                
-                if playerHealth <= 0 {
+                    enemyToMove.run(enemyMoveAction)
                     
-                    gameOver()
+                    bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                    enemyColumnArray[enemyCounter] = eastColumn
+                    enemyRowArray[enemyCounter] = eastRow
+                    
+                    bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                } else if bgNode.tileGroup(atColumn: eastColumn, row: eastRow) == bgGroupPlayer {
+                    
+                    playerHealth -= 1
+                    
+                    gameViewController.updatePlayerLife(playerHealth)
+                    
+                    if playerHealth <= 0 {
+                        
+                        gameOver()
+                        
+                    }
+                    
+                } else {
+                    
+                    bestDirectionArray.remove(at: 0)
+                    moveEnemy(enemyToMove)
                     
                 }
                 
-            } else {
+            case "West":
+                if bgNode.tileGroup(atColumn: westColumn, row: westRow) == bgGroup3 {
+                    
+                    enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: westColumn, row: westRow), duration: 0.3)
+                    
+                    enemyToMove.run(enemyMoveAction)
+                    
+                    bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                    enemyColumnArray[enemyCounter] = westColumn
+                    enemyRowArray[enemyCounter] = westRow
+                    
+                    bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                } else if bgNode.tileGroup(atColumn: westColumn, row: westRow) == bgGroupPlayer {
+                    
+                    playerHealth -= 1
+                    
+                    gameViewController.updatePlayerLife(playerHealth)
+                    
+                    if playerHealth <= 0 {
+                        
+                        gameOver()
+                        
+                    }
+                    
+                } else {
+                    
+                    bestDirectionArray.remove(at: 0)
+                    moveEnemy(enemyToMove)
+                    
+                }
                 
-                bestDirectionArray.remove(at: 0)
-                moveEnemy(enemyToMove)
+            case "South":
+                if bgNode.tileGroup(atColumn: southColumn, row: southRow) == bgGroup3 {
+                    
+                    enemyMoveAction = SKAction.move(to: bgNode.centerOfTile(atColumn: southColumn, row: southRow), duration: 0.3)
+                    
+                    enemyToMove.run(enemyMoveAction)
+                    
+                    bgNode.setTileGroup(bgGroup3, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                    enemyColumnArray[enemyCounter] = southColumn
+                    enemyRowArray[enemyCounter] = southRow
+                    
+                    bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                    
+                } else if bgNode.tileGroup(atColumn: southColumn, row: southRow) == bgGroupPlayer {
+                    
+                    playerHealth -= 1
+                    
+                    gameViewController.updatePlayerLife(playerHealth)
+                    
+                    if playerHealth <= 0 {
+                        
+                        gameOver()
+                        
+                    }
+                    
+                } else {
+                    
+                    bestDirectionArray.remove(at: 0)
+                    moveEnemy(enemyToMove)
+                    
+                }
+                
+            default:
+                break
                 
             }
-            
-        default:
-            break
-            
         }
-        
     }
     
     
@@ -1230,68 +1208,6 @@ class GameScene: SKScene {
             
             enemyCounter = 0
             
-            if currentFloor < 5 {
-                
-                if hasIncreasedAt0 == false {
-                    enemyArray.append(enemy1)
-                    enemyArray.append(enemy2)
-                    enemyColumnArray.append(enemy1Column)
-                    enemyColumnArray.append(enemy2Column)
-                    enemyRowArray.append(enemy1Row)
-                    enemyRowArray.append(enemy2Row)
-                    hasIncreasedAt0 = true
-                }
-                
-            } else if currentFloor < 10 {
-                
-                if hasIncreasedAt5 == false {
-                    enemyArray.append(enemy3)
-                    enemyArray.append(enemy4)
-                    enemyColumnArray.append(enemy3Column)
-                    enemyColumnArray.append(enemy4Column)
-                    enemyRowArray.append(enemy3Row)
-                    enemyRowArray.append(enemy4Row)
-                    hasIncreasedAt5 = true
-                }
-                
-            } else if currentFloor < 15 {
-                
-                if hasIncreasedAt10 == false {
-                    enemyArray.append(enemy5)
-                    enemyArray.append(enemy6)
-                    enemyColumnArray.append(enemy5Column)
-                    enemyColumnArray.append(enemy6Column)
-                    enemyRowArray.append(enemy5Row)
-                    enemyRowArray.append(enemy6Row)
-                    hasIncreasedAt10 = true
-                }
-                
-            } else if currentFloor < 20 {
-                
-                if hasIncreasedAt15 == false {
-                    enemyArray.append(enemy7)
-                    enemyArray.append(enemy8)
-                    enemyColumnArray.append(enemy7Column)
-                    enemyColumnArray.append(enemy8Column)
-                    enemyRowArray.append(enemy7Row)
-                    enemyRowArray.append(enemy8Row)
-                    hasIncreasedAt15 = true
-                }
-                
-            } else {
-                
-                if hasIncreasedAt20 == false {
-                    enemyArray.append(enemy9)
-                    enemyArray.append(enemy10)
-                    enemyColumnArray.append(enemy9Column)
-                    enemyColumnArray.append(enemy10Column)
-                    enemyRowArray.append(enemy9Row)
-                    enemyRowArray.append(enemy10Row)
-                    hasIncreasedAt20 = true
-                }
-                
-            }
-            
             for enemy in enemyArray {
                 
                 if activeEnemyArray.contains(enemy) == false {
@@ -1303,7 +1219,7 @@ class GameScene: SKScene {
                     case 0:
                         randomTileSpawn = Int(arc4random_uniform(2))
                         
-                        for i in 1...3 {
+                        for i in 1...4 {
                             
                             if bgNode.tileGroup(atColumn: playerPositionColumn + (randomTileSpawn - 1), row: playerPositionRow + i) == bgGroup3 {
                                 
@@ -1320,12 +1236,15 @@ class GameScene: SKScene {
                         if lineOfSightCheck.contains(false) == false {
                             
                             enemyColumnArray[enemyCounter] = playerPositionColumn + (randomTileSpawn - 1)
-                            enemyRowArray[enemyCounter] = playerPositionRow + 3
                             
-                            bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                        
+                            enemyRowArray[enemyCounter] = playerPositionRow + 4
+                            
                             activeEnemyArray.append(enemy)
+                            
+                            sortActiveEnemyArray()
+                            
                             self.addChild(enemy)
+                            
                             enemy.position = bgNode.centerOfTile(atColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
                             
                         }
@@ -1335,7 +1254,7 @@ class GameScene: SKScene {
                     case 1:
                         randomTileSpawn = Int(arc4random_uniform(2))
                         
-                        for i in 1...3 {
+                        for i in 1...4 {
                             
                             if bgNode.tileGroup(atColumn: playerPositionColumn + i, row: playerPositionRow + (randomTileSpawn - 1)) == bgGroup3 {
                                 
@@ -1351,13 +1270,16 @@ class GameScene: SKScene {
                         
                         if lineOfSightCheck.contains(false) == false {
                             
-                            enemyColumnArray[enemyCounter] = playerPositionColumn + 3
+                            enemyColumnArray[enemyCounter] = playerPositionColumn + 4
+                            
                             enemyRowArray[enemyCounter] = playerPositionRow + (randomTileSpawn - 1)
                             
-                            bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                            
                             activeEnemyArray.append(enemy)
+                            
+                            sortActiveEnemyArray()
+                            
                             self.addChild(enemy)
+                            
                             enemy.position = bgNode.centerOfTile(atColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
                             
                         }
@@ -1367,7 +1289,7 @@ class GameScene: SKScene {
                     case 2:
                         randomTileSpawn = Int(arc4random_uniform(2))
                         
-                        for i in 1...3 {
+                        for i in 1...4 {
                             
                             if bgNode.tileGroup(atColumn: playerPositionColumn + (randomTileSpawn - 1), row: playerPositionRow - i) == bgGroup3 {
                                 
@@ -1384,12 +1306,15 @@ class GameScene: SKScene {
                         if lineOfSightCheck.contains(false) == false {
                             
                             enemyColumnArray[enemyCounter] = playerPositionColumn + (randomTileSpawn - 1)
-                            enemyRowArray[enemyCounter] = playerPositionRow - 3
                             
-                            bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
+                            enemyRowArray[enemyCounter] = playerPositionRow - 4
                             
                             activeEnemyArray.append(enemy)
+                            
+                            sortActiveEnemyArray()
+                            
                             self.addChild(enemy)
+                            
                             enemy.position = bgNode.centerOfTile(atColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
                             
                         }
@@ -1399,7 +1324,7 @@ class GameScene: SKScene {
                     case 3:
                         randomTileSpawn = Int(arc4random_uniform(2))
                         
-                        for i in 1...3 {
+                        for i in 1...4 {
                             
                             if bgNode.tileGroup(atColumn: playerPositionColumn - i, row: playerPositionRow + (randomTileSpawn - 1)) == bgGroup3 {
                                 
@@ -1415,13 +1340,16 @@ class GameScene: SKScene {
                         
                         if lineOfSightCheck.contains(false) == false {
                             
-                            enemyColumnArray[enemyCounter] = playerPositionColumn - 3
+                            enemyColumnArray[enemyCounter] = playerPositionColumn - 4
+                            
                             enemyRowArray[enemyCounter] = playerPositionRow + (randomTileSpawn - 1)
                             
-                            bgNode.setTileGroup(bgGroupEnemy, forColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
-                            
                             activeEnemyArray.append(enemy)
+                            
+                            sortActiveEnemyArray()
+                            
                             self.addChild(enemy)
+                            
                             enemy.position = bgNode.centerOfTile(atColumn: enemyColumnArray[enemyCounter], row: enemyRowArray[enemyCounter])
                             
                         }
@@ -1443,7 +1371,27 @@ class GameScene: SKScene {
         
     }
     
-    
+    func sortActiveEnemyArray() {
+        
+        if activeEnemyArray.contains(enemy1) == true && activeEnemyArray.contains(enemy2) == true && activeEnemyArray.contains(enemy3) == false {
+            
+            activeEnemyArray = [enemy1, enemy2]
+            
+        } else if activeEnemyArray.contains(enemy1) == false && activeEnemyArray.contains(enemy2) == true && activeEnemyArray.contains(enemy3) == true {
+            
+            activeEnemyArray = [enemy2, enemy3]
+            
+        } else if activeEnemyArray.contains(enemy1) == true && activeEnemyArray.contains(enemy2) == false && activeEnemyArray.contains(enemy3) == true {
+            
+            activeEnemyArray = [enemy1, enemy3]
+            
+        } else if activeEnemyArray.contains(enemy1) == true && activeEnemyArray.contains(enemy2) == true && activeEnemyArray.contains(enemy3) == true {
+            
+            activeEnemyArray = [enemy1, enemy2, enemy3]
+            
+        }
+        
+    }
     
     
     
@@ -1540,6 +1488,16 @@ class GameScene: SKScene {
                         }
                     }
                     
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 1) == bgGroupLoot {
+                    
+                    if playerHealth < 5 {
+                        
+                        playerHealth += 1
+                        
+                        gameViewController.updatePlayerLife(playerHealth)
+                        
+                    }
+                    
                 }
                 
             case "ArrowRight":
@@ -1598,6 +1556,16 @@ class GameScene: SKScene {
                         let _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
                             self.regenerate()
                         }
+                    }
+                    
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn + 1, row: playerPositionRow) == bgGroupLoot {
+                    
+                    if playerHealth < 5 {
+                        
+                        playerHealth += 1
+                        
+                        gameViewController.updatePlayerLife(playerHealth)
+                        
                     }
                     
                 }
@@ -1660,6 +1628,16 @@ class GameScene: SKScene {
                         }
                     }
                     
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 1) == bgGroupLoot {
+                    
+                    if playerHealth < 5 {
+                        
+                        playerHealth += 1
+                        
+                        gameViewController.updatePlayerLife(playerHealth)
+                        
+                    }
+                    
                 }
                 
             case "ArrowLeft":
@@ -1719,6 +1697,16 @@ class GameScene: SKScene {
                         }
                     }
                     
+                } else if bgNode.tileGroup(atColumn: playerPositionColumn - 1, row: playerPositionRow) == bgGroupLoot {
+                    
+                    if playerHealth < 5 {
+                        
+                        playerHealth += 1
+                        
+                        gameViewController.updatePlayerLife(playerHealth)
+                        
+                    }
+                    
                 }
                 
             default:
@@ -1730,6 +1718,11 @@ class GameScene: SKScene {
     }
     
     //Function for the player attacking
+    
+    var attackCheckColumn : Int!
+    var attackCheckRow : Int!
+    var enemyRemoveIndex = 0
+    var enemyRemoved = false
     
     func playerAttack(attackDirection: String) {
         
@@ -1777,6 +1770,39 @@ class GameScene: SKScene {
                 attackSprite.removeFromParent()
             }
             
+            //Kill an enemy if it's in the way of the attack
+            if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow + 1) == bgGroupEnemy {
+                
+                enemyRemoved = false
+                
+                for i in 1...activeEnemyArray.count {
+                    
+                    
+                    if enemyRemoved == false {
+                    
+                        if enemyColumnArray[i-1] == playerPositionColumn && enemyRowArray[i-1] == playerPositionRow + 1 {
+                        
+                            enemyRemoveIndex = i-1
+                        
+                            activeEnemyArray[enemyRemoveIndex].removeFromParent()
+                            activeEnemyArray.remove(at: enemyRemoveIndex)
+                            
+                            overallScore += 25
+                            gameViewController.updateOverallScore(overallScore)
+                            
+                            bgNode.setTileGroup(bgGroup3, forColumn: playerPositionColumn, row: playerPositionRow + 1)
+                            enemyRemoved = true
+                            
+                            sortActiveEnemyArray()
+                        
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
         case "AttackRight":
             
             if facingRight != true {
@@ -1795,6 +1821,38 @@ class GameScene: SKScene {
             attackSprite.run(attackAnimation)
             let _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { (timer) in
                 attackSprite.removeFromParent()
+            }
+            
+            if bgNode.tileGroup(atColumn: playerPositionColumn + 1, row: playerPositionRow) == bgGroupEnemy {
+                
+                enemyRemoved = false
+                
+                for i in 1...activeEnemyArray.count {
+                    
+                    
+                    if enemyRemoved == false {
+                        
+                        if enemyColumnArray[i-1] == playerPositionColumn + 1 && enemyRowArray[i-1] == playerPositionRow {
+                            
+                            enemyRemoveIndex = i-1
+                            
+                            activeEnemyArray[enemyRemoveIndex].removeFromParent()
+                            activeEnemyArray.remove(at: enemyRemoveIndex)
+                            
+                            overallScore += 25
+                            gameViewController.updateOverallScore(overallScore)
+                            
+                            bgNode.setTileGroup(bgGroup3, forColumn: playerPositionColumn + 1, row: playerPositionRow)
+                            enemyRemoved = true
+                            
+                            sortActiveEnemyArray()
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
             }
             
         case "AttackDown":
@@ -1817,6 +1875,38 @@ class GameScene: SKScene {
                 attackSprite.removeFromParent()
             }
             
+            if bgNode.tileGroup(atColumn: playerPositionColumn, row: playerPositionRow - 1) == bgGroupEnemy {
+                
+                enemyRemoved = false
+                
+                for i in 1...activeEnemyArray.count {
+                    
+                    
+                    if enemyRemoved == false {
+                        
+                        if enemyColumnArray[i-1] == playerPositionColumn && enemyRowArray[i-1] == playerPositionRow - 1 {
+                            
+                            enemyRemoveIndex = i-1
+                            
+                            activeEnemyArray[enemyRemoveIndex].removeFromParent()
+                            activeEnemyArray.remove(at: enemyRemoveIndex)
+                            
+                            overallScore += 25
+                            gameViewController.updateOverallScore(overallScore)
+                            
+                            bgNode.setTileGroup(bgGroup3, forColumn: playerPositionColumn, row: playerPositionRow - 1)
+                            enemyRemoved = true
+                            
+                            sortActiveEnemyArray()
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
         case "AttackLeft":
             
             if facingLeft != true {
@@ -1837,6 +1927,38 @@ class GameScene: SKScene {
                 attackSprite.removeFromParent()
             }
             
+            if bgNode.tileGroup(atColumn: playerPositionColumn - 1, row: playerPositionRow) == bgGroupEnemy {
+                
+                enemyRemoved = false
+                
+                for i in 1...activeEnemyArray.count {
+                    
+                    
+                    if enemyRemoved == false {
+                        
+                        if enemyColumnArray[i-1] == playerPositionColumn - 1 && enemyRowArray[i-1] == playerPositionRow {
+                            
+                            enemyRemoveIndex = i-1
+                            
+                            activeEnemyArray[enemyRemoveIndex].removeFromParent()
+                            activeEnemyArray.remove(at: enemyRemoveIndex)
+                            
+                            overallScore += 25
+                            gameViewController.updateOverallScore(overallScore)
+                            
+                            bgNode.setTileGroup(bgGroup3, forColumn: playerPositionColumn - 1, row: playerPositionRow)
+                            enemyRemoved = true
+                            
+                            sortActiveEnemyArray()
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
         default:
             break
         }
@@ -1847,10 +1969,10 @@ class GameScene: SKScene {
     // Room regeneration
     
     func regenerate() {
-        // clear both tilemaps (bgnode and bgnode roof) *maybe not needed*
         
         // Increases the score by 100 for going up one level
         overallScore += 100
+        gameViewController.updateOverallScore(overallScore)
         
         self.removeAllChildren()
         player.removeAllChildren()
@@ -1866,9 +1988,8 @@ class GameScene: SKScene {
             [0,0,0,0,0,0,0]
         ]
         
-        //bgNode.fill(with: bgGroup1)
         
-        //currentFloor += 1
+        currentFloor += 1
         playerPositionColumn = 24
         playerPositionRow = 24
         numberOfPlayerMoves = 0
@@ -1911,13 +2032,27 @@ class GameScene: SKScene {
         bestScoreInt.value = Int64(overallScore)
         GKScore.report([bestScoreInt]) { (error) in
             if error != nil {
-                print(error!.localizedDescription)
+                //print(error!.localizedDescription)
             } else {
-                print("Best Score submitted to your Leaderboard!")
+                //print("Best Score submitted to your Leaderboard!")
             }
         }
         
         gameViewController.highScore(overallScore)
+        
+        playerPositionColumn = 24
+        playerPositionRow = 24
+        numberOfPlayerMoves = 0
+        
+        activeEnemyArray.removeAll()
+        
+        columnNo = 0
+        rowNo = 48
+        
+        roofColumnNo = 0
+        roofRowNo = 48
+        
+        gameViewController.performSegue(withIdentifier: "titleSegue", sender: self)
         
     }
     
